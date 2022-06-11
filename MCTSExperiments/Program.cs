@@ -12,8 +12,8 @@ namespace MCTSExperiments
         {
             var game = GomokuGame.CreateGomokuGame();
 
-            var engine1 = new MCTSEngine<GomokuLib.Action>();
-            var engine2 = new MCTSEngine<GomokuLib.Action>();
+            var engine1 = new MCTSEngine<GomokuLib.Action>() { IterationCount = 1000 };
+            var engine2 = new MCTSEngine<GomokuLib.Action>() { IterationCount = 100 };
 
             var moveCount = 0;
             var actionsExecuted = new List<GomokuLib.Action>();
@@ -23,7 +23,7 @@ namespace MCTSExperiments
             while (true)
             {
                 MCTSEngine<GomokuLib.Action> currentEngine;
-                if (moveCount % 2 == 0)
+                if (++moveCount % 2 == 1)
                 {
                     currentEngine = engine1;
                 }
@@ -34,12 +34,16 @@ namespace MCTSExperiments
 
                 var action = currentEngine.CalculateFromExecutedActions(game, actionsExecuted);
 
+
                 game.ExecuteAction(action);
+
+                game.PrintBoard();
 
                 winner = game.GetWinner();
 
                 if (winner is not null || game.IsDraw())
                 {
+                    game.PrintBoard();
                     break;
                 }
             }

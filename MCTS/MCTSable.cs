@@ -7,5 +7,6 @@ namespace MCTS
         MCTSable<TAction> GetGame(IEnumerable<TAction> actions);
         List<TAction> GetAvailableActions();
         void ExecuteAction(TAction action);
+        double? GetFirstPlayerPoints();
     }
 }
