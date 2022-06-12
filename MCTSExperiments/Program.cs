@@ -1,4 +1,5 @@
 ﻿using GomokuLib;
+using Heuristics;
 using MCTS;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace MCTSExperiments
             var game = GomokuGame.CreateGomokuGame();
 
             var engine1 = new ClassicMCTSEngine<GomokuLib.Action>() { IterationCount = 1000 };
-            var engine2 = new UCB1TunedMCTSEngine<GomokuLib.Action>() { IterationCount = 500 };
+            var engine2 = new HeuristicsEngine<GomokuLib.Action>();
 
             var moveCount = 0;
             var actionsExecuted = new List<GomokuLib.Action>();
@@ -21,7 +22,7 @@ namespace MCTSExperiments
 
             while (true)
             {
-                MCTSEngine<GomokuLib.Action> currentEngine;
+                IEngine<GomokuLib.Action> currentEngine;
                 if (++moveCount % 2 == 1)
                 {
                     currentEngine = engine1;

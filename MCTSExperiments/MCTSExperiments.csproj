@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GomokuLib\GomokuLib.csproj" />
+    <ProjectReference Include="..\Heuristics\Heuristics.csproj" />
     <ProjectReference Include="..\MCTS\MCTS.csproj" />
   </ItemGroup>
 
