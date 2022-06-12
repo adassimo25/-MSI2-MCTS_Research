@@ -28,6 +28,11 @@ namespace GomokuGUI
                 return BotAlgorithmType.MCTSUCB1withHeuristics;
             }
 
+            if (radioButtonBot1GreedyHeuristics.Checked)
+            {
+                return BotAlgorithmType.GreedyHeuristics;
+            }
+
             return BotAlgorithmType.MCTSClassic;
         }
 
@@ -46,6 +51,11 @@ namespace GomokuGUI
             if (radioButtonBot2MCTSUCB1withHeuristics.Checked)
             {
                 return BotAlgorithmType.MCTSUCB1withHeuristics;
+            }
+
+            if (radioButtonBot2GreedyHeuristics.Checked)
+            {
+                return BotAlgorithmType.GreedyHeuristics;
             }
 
             return BotAlgorithmType.MCTSClassic;

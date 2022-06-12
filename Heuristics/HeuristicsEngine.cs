@@ -127,7 +127,7 @@ namespace Heuristics
                 }
             }
 
-            for (var i = - (GomokuGame.BoardSize - 1); i <= GomokuGame.BoardSize - 1; i++)
+            for (var i = -(GomokuGame.BoardSize - 1); i <= GomokuGame.BoardSize - 1; i++)
             {
                 var actualLineType = LineType.Closed;
                 var actualCount = 0;
