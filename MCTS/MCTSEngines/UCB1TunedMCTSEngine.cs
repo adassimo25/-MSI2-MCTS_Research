@@ -16,7 +16,7 @@ namespace MCTS
             var div = 0;
             foreach (var allState in allStates)
             {
-                if(allState.Id <= state.Id)
+                if (allState.Id <= state.Id)
                 {
                     sum += Math.Pow(allState.Points - state.Points, 2);
                     div++;
@@ -24,7 +24,7 @@ namespace MCTS
             }
 
             var r = state.Passes;
-            var v = sum/div + Math.Sqrt(2 * Math.Log(n) / div);
+            var v = sum / div + Math.Sqrt(2 * Math.Log(n) / div);
             var c = Math.Sqrt(Math.Min(0.25, v));
 
             return state.Points / state.Passes + c * Math.Sqrt(Math.Log(n) / state.Passes);

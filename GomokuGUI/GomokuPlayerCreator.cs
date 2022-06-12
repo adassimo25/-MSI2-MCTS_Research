@@ -1,14 +1,15 @@
-﻿using GomokuGUI.Players;
+﻿using GomokuGUI.Enums;
+using GomokuGUI.Players;
 
 namespace GomokuGUI
 {
     public partial class Gomoku
     {
-        private static Human CreateHuman() => new();
+        private Human CreateHuman() => new(pictureBox);
 
-        private Bot CreateBot1() => new(GetBot1CheckedAlgorithm(), trackBarBot1.Value);
+        private Bot CreateBot1() => new("Bot Adam", GetBot1CheckedAlgorithm(), trackBarBot1.Value);
 
-        private Bot CreateBot2() => new(GetBot2CheckedAlgorithm(), trackBarBot2.Value);
+        private Bot CreateBot2() => new("Bot Peter", GetBot2CheckedAlgorithm(), trackBarBot2.Value);
 
         private BotAlgorithmType GetBot1CheckedAlgorithm()
         {
@@ -17,14 +18,14 @@ namespace GomokuGUI
                 return BotAlgorithmType.MCTSClassic;
             }
 
-            if (radioButtonBot1MCTSUCB1TUNED.Checked)
+            if (radioButtonBot1MCTSUCB1Tuned.Checked)
             {
-                return BotAlgorithmType.MCTSUCB1TUNED;
+                return BotAlgorithmType.MCTSUCB1Tuned;
             }
 
-            if (radioButtonBot1MCTSUCB1withVF.Checked)
+            if (radioButtonBot1MCTSUCB1withHeuristics.Checked)
             {
-                return BotAlgorithmType.MCTSUCB1withValueFunction;
+                return BotAlgorithmType.MCTSUCB1withHeuristics;
             }
 
             return BotAlgorithmType.MCTSClassic;
@@ -37,14 +38,14 @@ namespace GomokuGUI
                 return BotAlgorithmType.MCTSClassic;
             }
 
-            if (radioButtonBot2MCTSUCB1TUNED.Checked)
+            if (radioButtonBot2MCTSUCB1Tuned.Checked)
             {
-                return BotAlgorithmType.MCTSUCB1TUNED;
+                return BotAlgorithmType.MCTSUCB1Tuned;
             }
 
-            if (radioButtonBot2MCTSUCB1withVF.Checked)
+            if (radioButtonBot2MCTSUCB1withHeuristics.Checked)
             {
-                return BotAlgorithmType.MCTSUCB1withValueFunction;
+                return BotAlgorithmType.MCTSUCB1withHeuristics;
             }
 
             return BotAlgorithmType.MCTSClassic;

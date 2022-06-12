@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GomokuLib\GomokuLib.csproj" />
+    <ProjectReference Include="..\Heuristics\Heuristics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="GomokuGameplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

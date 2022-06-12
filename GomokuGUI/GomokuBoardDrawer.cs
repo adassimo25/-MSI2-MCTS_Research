@@ -17,29 +17,33 @@ namespace GomokuGUI
 
         private void DrawNet()
         {
-            var pen = new Pen(Color.Black, borderThickness);
             var (width, height) = ((float)pictureBox.Width, (float)pictureBox.Height);
+            var boardSize = GomokuLib.GomokuGame.BoardSize;
 
-            for (int i = 1; i < BoardSize; i++)
+            var pen = new Pen(Color.Black, borderThickness);
+
+            for (int i = 1; i < boardSize; i++)
             {
-                graphics.DrawLine(pen, 0, i * height / BoardSize, width, i * height / BoardSize);
-                graphics.DrawLine(pen, i * width / BoardSize, 0, i * width / BoardSize, height);
+                graphics.DrawLine(pen, 0, i * height / boardSize, width, i * height / boardSize);
+                graphics.DrawLine(pen, i * width / boardSize, 0, i * width / boardSize, height);
             }
 
             pictureBox.Refresh();
         }
 
-        private void DrawStone(Color color, int netX, int netY)
+        private void DrawStone(GomokuLib.Color color, int netX, int netY)
         {
             var (width, height) = ((float)pictureBox.Width, (float)pictureBox.Height);
+            var boardSize = GomokuLib.GomokuGame.BoardSize;
 
-            var radius = Math.Min(width / BoardSize, height / BoardSize) - 3;
-            var deltaX = (width / BoardSize - radius) / 2.0f;
-            var deltaY = (height / BoardSize - radius) / 2.0f;
-            var centreX = netX * width / BoardSize + deltaX;
-            var centreY = netY * height / BoardSize + deltaY;
+            var radius = Math.Min(width / boardSize, height / boardSize) - 3;
+            var deltaX = (width / boardSize - radius) / 2.0f;
+            var deltaY = (height / boardSize - radius) / 2.0f;
+            var centreX = netX * width / boardSize + deltaX;
+            var centreY = netY * height / boardSize + deltaY;
 
-            graphics.FillEllipse(new SolidBrush(color), centreX, centreY, radius, radius);
+            graphics.FillEllipse(new SolidBrush(color == GomokuLib.Color.Red ? Color.Red : Color.Green),
+                centreX, centreY, radius, radius);
             pictureBox.Refresh();
         }
     }

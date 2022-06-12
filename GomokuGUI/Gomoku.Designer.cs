@@ -33,6 +33,7 @@ namespace GomokuGUI
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editGameParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanelMenu = new System.Windows.Forms.TableLayoutPanel();
@@ -46,27 +47,26 @@ namespace GomokuGUI
             this.tableLayoutPanelBotsSettings = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxBot2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelBot2 = new System.Windows.Forms.TableLayoutPanel();
-            this.radioButtonBot2GreedyHeuristic = new System.Windows.Forms.RadioButton();
-            this.radioButtonBot2MCTSUCB1withVF = new System.Windows.Forms.RadioButton();
+            this.radioButtonBot2GreedyHeuristics = new System.Windows.Forms.RadioButton();
+            this.radioButtonBot2MCTSUCB1withHeuristics = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanelBot2Iterations = new System.Windows.Forms.TableLayoutPanel();
             this.labelBot2Iterations = new System.Windows.Forms.Label();
             this.labelBot2IterationsNumber = new System.Windows.Forms.Label();
             this.trackBarBot2 = new System.Windows.Forms.TrackBar();
             this.labelBot2SelectAlgorithm = new System.Windows.Forms.Label();
             this.radioButtonBot2MCTSClassic = new System.Windows.Forms.RadioButton();
-            this.radioButtonBot2MCTSUCB1TUNED = new System.Windows.Forms.RadioButton();
+            this.radioButtonBot2MCTSUCB1Tuned = new System.Windows.Forms.RadioButton();
             this.groupBoxBot1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelBot1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radioButtonBot1GreedyHeuristic = new System.Windows.Forms.RadioButton();
-            this.radioButtonBot1MCTSUCB1withVF = new System.Windows.Forms.RadioButton();
+            this.radioButtonBot1GreedyHeuristics = new System.Windows.Forms.RadioButton();
+            this.radioButtonBot1MCTSUCB1withHeuristics = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanelBot1Iterations = new System.Windows.Forms.TableLayoutPanel();
             this.labelBot1Iterations = new System.Windows.Forms.Label();
             this.labelBot1IterationsNumber = new System.Windows.Forms.Label();
             this.trackBarBot1 = new System.Windows.Forms.TrackBar();
             this.labelBot1SelectAlgorithm = new System.Windows.Forms.Label();
             this.radioButtonBot1MCTSClassic = new System.Windows.Forms.RadioButton();
-            this.radioButtonBot1MCTSUCB1TUNED = new System.Windows.Forms.RadioButton();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.radioButtonBot1MCTSUCB1Tuned = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanelMain.SuspendLayout();
@@ -129,6 +129,13 @@ namespace GomokuGUI
             this.editGameParametersToolStripMenuItem.Text = "Edit game parameters";
             this.editGameParametersToolStripMenuItem.Click += new System.EventHandler(this.EditGameParametersToolStripMenuItem_Click);
             // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
+            // 
             // tableLayoutPanelMain
             // 
             this.tableLayoutPanelMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -155,7 +162,6 @@ namespace GomokuGUI
             this.pictureBox.Size = new System.Drawing.Size(693, 707);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
-            this.pictureBox.Click += new System.EventHandler(this.PictureBox_Click);
             // 
             // tableLayoutPanelMenu
             // 
@@ -290,20 +296,20 @@ namespace GomokuGUI
             this.groupBoxBot2.Size = new System.Drawing.Size(209, 225);
             this.groupBoxBot2.TabIndex = 1;
             this.groupBoxBot2.TabStop = false;
-            this.groupBoxBot2.Text = "Bot 2";
+            this.groupBoxBot2.Text = "Bot Peter";
             // 
             // tableLayoutPanelBot2
             // 
             this.tableLayoutPanelBot2.ColumnCount = 1;
             this.tableLayoutPanelBot2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelBot2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelBot2.Controls.Add(this.radioButtonBot2GreedyHeuristic, 0, 6);
-            this.tableLayoutPanelBot2.Controls.Add(this.radioButtonBot2MCTSUCB1withVF, 0, 5);
+            this.tableLayoutPanelBot2.Controls.Add(this.radioButtonBot2GreedyHeuristics, 0, 6);
+            this.tableLayoutPanelBot2.Controls.Add(this.radioButtonBot2MCTSUCB1withHeuristics, 0, 5);
             this.tableLayoutPanelBot2.Controls.Add(this.tableLayoutPanelBot2Iterations, 0, 0);
             this.tableLayoutPanelBot2.Controls.Add(this.trackBarBot2, 0, 1);
             this.tableLayoutPanelBot2.Controls.Add(this.labelBot2SelectAlgorithm, 0, 2);
             this.tableLayoutPanelBot2.Controls.Add(this.radioButtonBot2MCTSClassic, 0, 3);
-            this.tableLayoutPanelBot2.Controls.Add(this.radioButtonBot2MCTSUCB1TUNED, 0, 4);
+            this.tableLayoutPanelBot2.Controls.Add(this.radioButtonBot2MCTSUCB1Tuned, 0, 4);
             this.tableLayoutPanelBot2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelBot2.Location = new System.Drawing.Point(3, 21);
             this.tableLayoutPanelBot2.Name = "tableLayoutPanelBot2";
@@ -318,31 +324,29 @@ namespace GomokuGUI
             this.tableLayoutPanelBot2.Size = new System.Drawing.Size(203, 201);
             this.tableLayoutPanelBot2.TabIndex = 0;
             // 
-            // radioButtonBot2GreedyHeuristic
+            // radioButtonBot2GreedyHeuristics
             // 
-            this.radioButtonBot2GreedyHeuristic.AutoSize = true;
-            this.radioButtonBot2GreedyHeuristic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonBot2GreedyHeuristic.Location = new System.Drawing.Point(3, 171);
-            this.radioButtonBot2GreedyHeuristic.Name = "radioButtonBot2GreedyHeuristic";
-            this.radioButtonBot2GreedyHeuristic.Size = new System.Drawing.Size(197, 27);
-            this.radioButtonBot2GreedyHeuristic.TabIndex = 6;
-            this.radioButtonBot2GreedyHeuristic.Text = "Greedy heuristic";
-            this.radioButtonBot2GreedyHeuristic.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.radioButtonBot2GreedyHeuristic.UseVisualStyleBackColor = true;
-            this.radioButtonBot2GreedyHeuristic.CheckedChanged += new System.EventHandler(this.RadioButtonBot2GreedyHeuristic_CheckedChanged);
+            this.radioButtonBot2GreedyHeuristics.AutoSize = true;
+            this.radioButtonBot2GreedyHeuristics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonBot2GreedyHeuristics.Location = new System.Drawing.Point(3, 171);
+            this.radioButtonBot2GreedyHeuristics.Name = "radioButtonBot2GreedyHeuristics";
+            this.radioButtonBot2GreedyHeuristics.Size = new System.Drawing.Size(197, 27);
+            this.radioButtonBot2GreedyHeuristics.TabIndex = 6;
+            this.radioButtonBot2GreedyHeuristics.Text = "Greedy heuristics";
+            this.radioButtonBot2GreedyHeuristics.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.radioButtonBot2GreedyHeuristics.UseVisualStyleBackColor = true;
             // 
-            // radioButtonBot2MCTSUCB1withVF
+            // radioButtonBot2MCTSUCB1withHeuristics
             // 
-            this.radioButtonBot2MCTSUCB1withVF.AutoSize = true;
-            this.radioButtonBot2MCTSUCB1withVF.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonBot2MCTSUCB1withVF.Location = new System.Drawing.Point(3, 143);
-            this.radioButtonBot2MCTSUCB1withVF.Name = "radioButtonBot2MCTSUCB1withVF";
-            this.radioButtonBot2MCTSUCB1withVF.Size = new System.Drawing.Size(197, 22);
-            this.radioButtonBot2MCTSUCB1withVF.TabIndex = 5;
-            this.radioButtonBot2MCTSUCB1withVF.Text = "MCTS UCB1 with val. func.";
-            this.radioButtonBot2MCTSUCB1withVF.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.radioButtonBot2MCTSUCB1withVF.UseVisualStyleBackColor = true;
-            this.radioButtonBot2MCTSUCB1withVF.CheckedChanged += new System.EventHandler(this.RadioButtonBot2MCTSUCB1withVF_CheckedChanged);
+            this.radioButtonBot2MCTSUCB1withHeuristics.AutoSize = true;
+            this.radioButtonBot2MCTSUCB1withHeuristics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonBot2MCTSUCB1withHeuristics.Location = new System.Drawing.Point(3, 143);
+            this.radioButtonBot2MCTSUCB1withHeuristics.Name = "radioButtonBot2MCTSUCB1withHeuristics";
+            this.radioButtonBot2MCTSUCB1withHeuristics.Size = new System.Drawing.Size(197, 22);
+            this.radioButtonBot2MCTSUCB1withHeuristics.TabIndex = 5;
+            this.radioButtonBot2MCTSUCB1withHeuristics.Text = "MCTS UCB1 with heuristics";
+            this.radioButtonBot2MCTSUCB1withHeuristics.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.radioButtonBot2MCTSUCB1withHeuristics.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelBot2Iterations
             // 
@@ -379,20 +383,20 @@ namespace GomokuGUI
             this.labelBot2IterationsNumber.Name = "labelBot2IterationsNumber";
             this.labelBot2IterationsNumber.Size = new System.Drawing.Size(63, 22);
             this.labelBot2IterationsNumber.TabIndex = 1;
-            this.labelBot2IterationsNumber.Text = "250";
+            this.labelBot2IterationsNumber.Text = "750";
             this.labelBot2IterationsNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // trackBarBot2
             // 
             this.trackBarBot2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trackBarBot2.Location = new System.Drawing.Point(3, 31);
-            this.trackBarBot2.Maximum = 1000;
-            this.trackBarBot2.Minimum = 100;
+            this.trackBarBot2.Maximum = 2500;
+            this.trackBarBot2.Minimum = 250;
             this.trackBarBot2.Name = "trackBarBot2";
             this.trackBarBot2.Size = new System.Drawing.Size(197, 22);
             this.trackBarBot2.TabIndex = 1;
             this.trackBarBot2.TickFrequency = 50;
-            this.trackBarBot2.Value = 250;
+            this.trackBarBot2.Value = 750;
             this.trackBarBot2.ValueChanged += new System.EventHandler(this.TrackBarBot2_ValueChanged);
             // 
             // labelBot2SelectAlgorithm
@@ -418,20 +422,18 @@ namespace GomokuGUI
             this.radioButtonBot2MCTSClassic.TabStop = true;
             this.radioButtonBot2MCTSClassic.Text = "MCTS classic";
             this.radioButtonBot2MCTSClassic.UseVisualStyleBackColor = true;
-            this.radioButtonBot2MCTSClassic.CheckedChanged += new System.EventHandler(this.RadioButtonBot2MCTSClassic_CheckedChanged);
             // 
-            // radioButtonBot2MCTSUCB1TUNED
+            // radioButtonBot2MCTSUCB1Tuned
             // 
-            this.radioButtonBot2MCTSUCB1TUNED.AutoSize = true;
-            this.radioButtonBot2MCTSUCB1TUNED.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonBot2MCTSUCB1TUNED.Location = new System.Drawing.Point(3, 115);
-            this.radioButtonBot2MCTSUCB1TUNED.Name = "radioButtonBot2MCTSUCB1TUNED";
-            this.radioButtonBot2MCTSUCB1TUNED.Size = new System.Drawing.Size(197, 22);
-            this.radioButtonBot2MCTSUCB1TUNED.TabIndex = 4;
-            this.radioButtonBot2MCTSUCB1TUNED.Text = "MCTS UCB1-TUNED";
-            this.radioButtonBot2MCTSUCB1TUNED.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.radioButtonBot2MCTSUCB1TUNED.UseVisualStyleBackColor = true;
-            this.radioButtonBot2MCTSUCB1TUNED.CheckedChanged += new System.EventHandler(this.RadioButtonBot2MCTSUCB1TUNED_CheckedChanged);
+            this.radioButtonBot2MCTSUCB1Tuned.AutoSize = true;
+            this.radioButtonBot2MCTSUCB1Tuned.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonBot2MCTSUCB1Tuned.Location = new System.Drawing.Point(3, 115);
+            this.radioButtonBot2MCTSUCB1Tuned.Name = "radioButtonBot2MCTSUCB1Tuned";
+            this.radioButtonBot2MCTSUCB1Tuned.Size = new System.Drawing.Size(197, 22);
+            this.radioButtonBot2MCTSUCB1Tuned.TabIndex = 4;
+            this.radioButtonBot2MCTSUCB1Tuned.Text = "MCTS UCB1-Tuned";
+            this.radioButtonBot2MCTSUCB1Tuned.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.radioButtonBot2MCTSUCB1Tuned.UseVisualStyleBackColor = true;
             // 
             // groupBoxBot1
             // 
@@ -443,20 +445,20 @@ namespace GomokuGUI
             this.groupBoxBot1.Size = new System.Drawing.Size(209, 225);
             this.groupBoxBot1.TabIndex = 0;
             this.groupBoxBot1.TabStop = false;
-            this.groupBoxBot1.Text = "Bot 1";
+            this.groupBoxBot1.Text = "Bot Adam";
             // 
             // tableLayoutPanelBot1
             // 
             this.tableLayoutPanelBot1.ColumnCount = 1;
             this.tableLayoutPanelBot1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelBot1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelBot1.Controls.Add(this.radioButtonBot1GreedyHeuristic, 0, 6);
-            this.tableLayoutPanelBot1.Controls.Add(this.radioButtonBot1MCTSUCB1withVF, 0, 5);
+            this.tableLayoutPanelBot1.Controls.Add(this.radioButtonBot1GreedyHeuristics, 0, 6);
+            this.tableLayoutPanelBot1.Controls.Add(this.radioButtonBot1MCTSUCB1withHeuristics, 0, 5);
             this.tableLayoutPanelBot1.Controls.Add(this.tableLayoutPanelBot1Iterations, 0, 0);
             this.tableLayoutPanelBot1.Controls.Add(this.trackBarBot1, 0, 1);
             this.tableLayoutPanelBot1.Controls.Add(this.labelBot1SelectAlgorithm, 0, 2);
             this.tableLayoutPanelBot1.Controls.Add(this.radioButtonBot1MCTSClassic, 0, 3);
-            this.tableLayoutPanelBot1.Controls.Add(this.radioButtonBot1MCTSUCB1TUNED, 0, 4);
+            this.tableLayoutPanelBot1.Controls.Add(this.radioButtonBot1MCTSUCB1Tuned, 0, 4);
             this.tableLayoutPanelBot1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelBot1.Location = new System.Drawing.Point(3, 21);
             this.tableLayoutPanelBot1.Name = "tableLayoutPanelBot1";
@@ -471,31 +473,29 @@ namespace GomokuGUI
             this.tableLayoutPanelBot1.Size = new System.Drawing.Size(203, 201);
             this.tableLayoutPanelBot1.TabIndex = 0;
             // 
-            // radioButtonBot1GreedyHeuristic
+            // radioButtonBot1GreedyHeuristics
             // 
-            this.radioButtonBot1GreedyHeuristic.AutoSize = true;
-            this.radioButtonBot1GreedyHeuristic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonBot1GreedyHeuristic.Location = new System.Drawing.Point(3, 171);
-            this.radioButtonBot1GreedyHeuristic.Name = "radioButtonBot1GreedyHeuristic";
-            this.radioButtonBot1GreedyHeuristic.Size = new System.Drawing.Size(197, 27);
-            this.radioButtonBot1GreedyHeuristic.TabIndex = 6;
-            this.radioButtonBot1GreedyHeuristic.Text = "Greedy heuristic";
-            this.radioButtonBot1GreedyHeuristic.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.radioButtonBot1GreedyHeuristic.UseVisualStyleBackColor = true;
-            this.radioButtonBot1GreedyHeuristic.CheckedChanged += new System.EventHandler(this.RadioButtonBot1GreedyHeuristic_CheckedChanged);
+            this.radioButtonBot1GreedyHeuristics.AutoSize = true;
+            this.radioButtonBot1GreedyHeuristics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonBot1GreedyHeuristics.Location = new System.Drawing.Point(3, 171);
+            this.radioButtonBot1GreedyHeuristics.Name = "radioButtonBot1GreedyHeuristics";
+            this.radioButtonBot1GreedyHeuristics.Size = new System.Drawing.Size(197, 27);
+            this.radioButtonBot1GreedyHeuristics.TabIndex = 6;
+            this.radioButtonBot1GreedyHeuristics.Text = "Greedy heuristics";
+            this.radioButtonBot1GreedyHeuristics.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.radioButtonBot1GreedyHeuristics.UseVisualStyleBackColor = true;
             // 
-            // radioButtonBot1MCTSUCB1withVF
+            // radioButtonBot1MCTSUCB1withHeuristics
             // 
-            this.radioButtonBot1MCTSUCB1withVF.AutoSize = true;
-            this.radioButtonBot1MCTSUCB1withVF.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonBot1MCTSUCB1withVF.Location = new System.Drawing.Point(3, 143);
-            this.radioButtonBot1MCTSUCB1withVF.Name = "radioButtonBot1MCTSUCB1withVF";
-            this.radioButtonBot1MCTSUCB1withVF.Size = new System.Drawing.Size(197, 22);
-            this.radioButtonBot1MCTSUCB1withVF.TabIndex = 5;
-            this.radioButtonBot1MCTSUCB1withVF.Text = "MCTS UCB1 with val. func.";
-            this.radioButtonBot1MCTSUCB1withVF.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.radioButtonBot1MCTSUCB1withVF.UseVisualStyleBackColor = true;
-            this.radioButtonBot1MCTSUCB1withVF.CheckedChanged += new System.EventHandler(this.RadioButtonBot1MCTSUCB1withVF_CheckedChanged);
+            this.radioButtonBot1MCTSUCB1withHeuristics.AutoSize = true;
+            this.radioButtonBot1MCTSUCB1withHeuristics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonBot1MCTSUCB1withHeuristics.Location = new System.Drawing.Point(3, 143);
+            this.radioButtonBot1MCTSUCB1withHeuristics.Name = "radioButtonBot1MCTSUCB1withHeuristics";
+            this.radioButtonBot1MCTSUCB1withHeuristics.Size = new System.Drawing.Size(197, 22);
+            this.radioButtonBot1MCTSUCB1withHeuristics.TabIndex = 5;
+            this.radioButtonBot1MCTSUCB1withHeuristics.Text = "MCTS UCB1 with heuristics";
+            this.radioButtonBot1MCTSUCB1withHeuristics.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.radioButtonBot1MCTSUCB1withHeuristics.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelBot1Iterations
             // 
@@ -532,20 +532,20 @@ namespace GomokuGUI
             this.labelBot1IterationsNumber.Name = "labelBot1IterationsNumber";
             this.labelBot1IterationsNumber.Size = new System.Drawing.Size(63, 22);
             this.labelBot1IterationsNumber.TabIndex = 1;
-            this.labelBot1IterationsNumber.Text = "250";
+            this.labelBot1IterationsNumber.Text = "750";
             this.labelBot1IterationsNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // trackBarBot1
             // 
             this.trackBarBot1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trackBarBot1.Location = new System.Drawing.Point(3, 31);
-            this.trackBarBot1.Maximum = 1000;
-            this.trackBarBot1.Minimum = 100;
+            this.trackBarBot1.Maximum = 2500;
+            this.trackBarBot1.Minimum = 250;
             this.trackBarBot1.Name = "trackBarBot1";
             this.trackBarBot1.Size = new System.Drawing.Size(197, 22);
             this.trackBarBot1.TabIndex = 1;
             this.trackBarBot1.TickFrequency = 50;
-            this.trackBarBot1.Value = 250;
+            this.trackBarBot1.Value = 750;
             this.trackBarBot1.ValueChanged += new System.EventHandler(this.TrackBarBot1_ValueChanged);
             // 
             // labelBot1SelectAlgorithm
@@ -571,27 +571,18 @@ namespace GomokuGUI
             this.radioButtonBot1MCTSClassic.TabStop = true;
             this.radioButtonBot1MCTSClassic.Text = "MCTS classic";
             this.radioButtonBot1MCTSClassic.UseVisualStyleBackColor = true;
-            this.radioButtonBot1MCTSClassic.CheckedChanged += new System.EventHandler(this.RadioButtonBot1MCTSClassic_CheckedChanged);
             // 
-            // radioButtonBot1MCTSUCB1TUNED
+            // radioButtonBot1MCTSUCB1Tuned
             // 
-            this.radioButtonBot1MCTSUCB1TUNED.AutoSize = true;
-            this.radioButtonBot1MCTSUCB1TUNED.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButtonBot1MCTSUCB1TUNED.Location = new System.Drawing.Point(3, 115);
-            this.radioButtonBot1MCTSUCB1TUNED.Name = "radioButtonBot1MCTSUCB1TUNED";
-            this.radioButtonBot1MCTSUCB1TUNED.Size = new System.Drawing.Size(197, 22);
-            this.radioButtonBot1MCTSUCB1TUNED.TabIndex = 4;
-            this.radioButtonBot1MCTSUCB1TUNED.Text = "MCTS UCB1-TUNED";
-            this.radioButtonBot1MCTSUCB1TUNED.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.radioButtonBot1MCTSUCB1TUNED.UseVisualStyleBackColor = true;
-            this.radioButtonBot1MCTSUCB1TUNED.CheckedChanged += new System.EventHandler(this.RadioButtonBot1MCTSUCB1TUNED_CheckedChanged);
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
+            this.radioButtonBot1MCTSUCB1Tuned.AutoSize = true;
+            this.radioButtonBot1MCTSUCB1Tuned.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radioButtonBot1MCTSUCB1Tuned.Location = new System.Drawing.Point(3, 115);
+            this.radioButtonBot1MCTSUCB1Tuned.Name = "radioButtonBot1MCTSUCB1Tuned";
+            this.radioButtonBot1MCTSUCB1Tuned.Size = new System.Drawing.Size(197, 22);
+            this.radioButtonBot1MCTSUCB1Tuned.TabIndex = 4;
+            this.radioButtonBot1MCTSUCB1Tuned.Text = "MCTS UCB1-Tuned";
+            this.radioButtonBot1MCTSUCB1Tuned.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.radioButtonBot1MCTSUCB1Tuned.UseVisualStyleBackColor = true;
             // 
             // Gomoku
             // 
@@ -651,26 +642,26 @@ namespace GomokuGUI
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBotsSettings;
         private System.Windows.Forms.GroupBox groupBoxBot2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBot2;
-        private System.Windows.Forms.RadioButton radioButtonBot2GreedyHeuristic;
-        private System.Windows.Forms.RadioButton radioButtonBot2MCTSUCB1withVF;
+        private System.Windows.Forms.RadioButton radioButtonBot2GreedyHeuristics;
+        private System.Windows.Forms.RadioButton radioButtonBot2MCTSUCB1withHeuristics;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBot2Iterations;
         private System.Windows.Forms.Label labelBot2Iterations;
         private System.Windows.Forms.Label labelBot2IterationsNumber;
         private System.Windows.Forms.TrackBar trackBarBot2;
         private System.Windows.Forms.Label labelBot2SelectAlgorithm;
         private System.Windows.Forms.RadioButton radioButtonBot2MCTSClassic;
-        private System.Windows.Forms.RadioButton radioButtonBot2MCTSUCB1TUNED;
+        private System.Windows.Forms.RadioButton radioButtonBot2MCTSUCB1Tuned;
         private System.Windows.Forms.GroupBox groupBoxBot1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBot1;
-        private System.Windows.Forms.RadioButton radioButtonBot1GreedyHeuristic;
-        private System.Windows.Forms.RadioButton radioButtonBot1MCTSUCB1withVF;
+        private System.Windows.Forms.RadioButton radioButtonBot1GreedyHeuristics;
+        private System.Windows.Forms.RadioButton radioButtonBot1MCTSUCB1withHeuristics;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelBot1Iterations;
         private System.Windows.Forms.Label labelBot1Iterations;
         private System.Windows.Forms.Label labelBot1IterationsNumber;
         private System.Windows.Forms.TrackBar trackBarBot1;
         private System.Windows.Forms.Label labelBot1SelectAlgorithm;
         private System.Windows.Forms.RadioButton radioButtonBot1MCTSClassic;
-        private System.Windows.Forms.RadioButton radioButtonBot1MCTSUCB1TUNED;
+        private System.Windows.Forms.RadioButton radioButtonBot1MCTSUCB1Tuned;
         private System.Windows.Forms.ToolStripMenuItem editGameParametersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
     }

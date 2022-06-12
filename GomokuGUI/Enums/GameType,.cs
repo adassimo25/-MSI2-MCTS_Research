@@ -1,4 +1,4 @@
-﻿namespace GomokuGUI
+﻿namespace GomokuGUI.Enums
 {
     public enum GameType
     {

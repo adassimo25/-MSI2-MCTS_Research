@@ -1,17 +1,47 @@
-﻿namespace GomokuGUI.Players
+﻿using GomokuGUI.Enums;
+using GomokuLib;
+using Heuristics;
+using MCTS;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace GomokuGUI.Players
 {
     public class Bot : IPlayer
     {
+        private readonly string _name;
         private readonly BotAlgorithmType _algorithmType;
-        private readonly int? _iterations;
+        private readonly IEngine<Action> _engine;
 
+        public string Name { get => _name; }
         public BotAlgorithmType AlgorithmType { get => _algorithmType; }
-        public int? Iterations { get => _iterations; }
+        public IEngine<Action> Engine { get => _engine; }
 
-        public Bot(BotAlgorithmType algorithmType, int? iterations = null)
+        public Bot(string name, BotAlgorithmType algorithmType, int? iterations = null)
         {
+            _name = name;
             _algorithmType = algorithmType;
-            _iterations = (algorithmType == BotAlgorithmType.GreedyHeuristic ? null : iterations);
+            _engine = GetEngineForAlgorithm(algorithmType, iterations);
+        }
+
+        private static IEngine<Action> GetEngineForAlgorithm(BotAlgorithmType algorithmType, int? iterations)
+        {
+            return algorithmType switch
+            {
+                BotAlgorithmType.MCTSClassic =>
+                    new ClassicMCTSEngine<Action>() { IterationCount = (int)iterations },
+                BotAlgorithmType.MCTSUCB1Tuned =>
+                    new UCB1TunedMCTSEngine<Action>() { IterationCount = (int)iterations },
+                BotAlgorithmType.MCTSUCB1withHeuristics =>
+                    new HeuristicsMCTSEngine<Action>() { IterationCount = (int)iterations },
+                BotAlgorithmType.GreedyHeuristics => new HeuristicsEngine<Action>(),
+                _ => null,
+            };
+        }
+
+        public async Task<Action> MakeMoveAsync(IMCTSAble<Action> game, IEnumerable<Action> actions)
+        {
+            return await Task.Run(() => _engine.CalculateFromExecutedActions(game, actions));
         }
     }
 }
