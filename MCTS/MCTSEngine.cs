@@ -15,6 +15,7 @@ namespace MCTS
         public TAction CalculateFromExecutedActions(IMCTSAble<TAction> game, IEnumerable<TAction> actions)
         {
             InitNew();
+
             var initialActions = game.GetAvailableActions();
             foreach (var availableAction in initialActions)
             {
