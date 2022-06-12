@@ -8,6 +8,8 @@ namespace Heuristics
 {
     public class HeuristicsMCTSEngine<TAction> : MCTSEngine<TAction>
     {
+        public override string Name { get; } = "HeuristicsMCTS";
+
         protected override double CalculateState(State<TAction> state, int n, IEnumerable<TAction> actions)
         {
             if (state.Passes == 0)

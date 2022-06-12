@@ -8,6 +8,8 @@ namespace Heuristics
 {
     public class HeuristicsEngine<TAction> : IEngine<TAction>
     {
+        public string Name { get; } = "Heuristics";
+
         public TAction CalculateFromExecutedActions(IMCTSAble<TAction> game, IEnumerable<TAction> actions)
         {
             var gomokuActions = actions.Select(a => a as GomokuLib.Action).ToList();
