@@ -1,4 +1,5 @@
-﻿using GomokuLib;
+﻿using GomokuGUI.Enums;
+using GomokuLib;
 using Heuristics;
 using MCTS;
 using System.Collections.Generic;
@@ -10,27 +11,28 @@ namespace GomokuGUI.Players
         private readonly string _name;
         private readonly BotAlgorithmType _algorithmType;
         private readonly IEngine<Action> _engine;
-        private readonly int? _iterations;
 
         public string Name { get => _name; }
         public BotAlgorithmType AlgorithmType { get => _algorithmType; }
         public IEngine<Action> Engine { get => _engine; }
-        public int? Iterations { get => _iterations; }
 
         public Bot(string name, BotAlgorithmType algorithmType, int? iterations = null)
         {
             _name = name;
-            _engine = GetEngineForAlgorithm(algorithmType);
-            _iterations = (algorithmType == BotAlgorithmType.GreedyHeuristics ? null : iterations);
+            _algorithmType = algorithmType;
+            _engine = GetEngineForAlgorithm(algorithmType, iterations);
         }
 
-        private static IEngine<Action> GetEngineForAlgorithm(BotAlgorithmType algorithmType)
+        private static IEngine<Action> GetEngineForAlgorithm(BotAlgorithmType algorithmType, int? iterations)
         {
             return algorithmType switch
             {
-                BotAlgorithmType.MCTSClassic => new ClassicMCTSEngine<Action>(),
-                BotAlgorithmType.MCTSUCB1Tuned => new UCB1TunedMCTSEngine<Action>(),
-                BotAlgorithmType.MCTSUCB1withHeuristics => new HeuristicsMCTSEngine<Action>(),
+                BotAlgorithmType.MCTSClassic =>
+                    new ClassicMCTSEngine<Action>() { IterationCount = (int)iterations },
+                BotAlgorithmType.MCTSUCB1Tuned =>
+                    new UCB1TunedMCTSEngine<Action>() { IterationCount = (int)iterations },
+                BotAlgorithmType.MCTSUCB1withHeuristics =>
+                    new HeuristicsMCTSEngine<Action>() { IterationCount = (int)iterations },
                 BotAlgorithmType.GreedyHeuristics => new HeuristicsEngine<Action>(),
                 _ => null,
             };

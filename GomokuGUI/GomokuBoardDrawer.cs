@@ -29,7 +29,7 @@ namespace GomokuGUI
             pictureBox.Refresh();
         }
 
-        private void DrawStone(Color color, int netX, int netY)
+        private void DrawStone(GomokuLib.Color color, int netX, int netY)
         {
             var (width, height) = ((float)pictureBox.Width, (float)pictureBox.Height);
 
@@ -39,7 +39,8 @@ namespace GomokuGUI
             var centreX = netX * width / BoardSize + deltaX;
             var centreY = netY * height / BoardSize + deltaY;
 
-            graphics.FillEllipse(new SolidBrush(color), centreX, centreY, radius, radius);
+            graphics.FillEllipse(new SolidBrush(color == GomokuLib.Color.Red ? Color.Red : Color.Green),
+                centreX, centreY, radius, radius);
             pictureBox.Refresh();
         }
     }

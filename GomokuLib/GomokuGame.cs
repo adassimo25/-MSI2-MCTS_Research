@@ -6,8 +6,8 @@ namespace GomokuLib
 {
     public class GomokuGame : IMCTSAble<Action>
     {
-        private static readonly int BoardSize = 10;
-        private static readonly int WinPiecesCount = 4;
+        private static readonly int BoardSize = 13;
+        private static readonly int WinPiecesCount = 5;
 
         public Cell[,] Board { get; set; } = new Cell[BoardSize, BoardSize];
         public Color ActualColorMove { get; set; } = Color.Red;

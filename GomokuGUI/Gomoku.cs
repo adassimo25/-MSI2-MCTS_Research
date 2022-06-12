@@ -1,4 +1,6 @@
-﻿using GomokuGUI.Players;
+﻿using GomokuGUI.Enums;
+using GomokuGUI.Players;
+using GomokuLib;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -11,6 +13,7 @@ namespace GomokuGUI
         private IPlayer Player2 { get; set; }
         public int BoardSize { get; set; } = 13;
         public int Winning { get; set; } = 5;
+        public GomokuGame Game { get; set; } = GomokuGame.CreateGomokuGame();
 
         public Gomoku()
         {
@@ -131,12 +134,11 @@ namespace GomokuGUI
             editGameParametersToolStripMenuItem.Enabled = false;
             tableLayoutPanelMenu.Enabled = false;
 
-            // TODO game
-        }
+            Play();
 
-        private void PictureBox_Click(object sender, EventArgs e)
-        {
-            // TODO when player game
+            buttonStart.Enabled = true;
+            editGameParametersToolStripMenuItem.Enabled = true;
+            tableLayoutPanelMenu.Enabled = true;
         }
 
         private void EditGameParametersToolStripMenuItem_Click(object sender, EventArgs e)

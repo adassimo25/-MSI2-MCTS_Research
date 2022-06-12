@@ -1,4 +1,5 @@
-﻿using GomokuGUI.Players;
+﻿using GomokuGUI.Enums;
+using GomokuGUI.Players;
 
 namespace GomokuGUI
 {
