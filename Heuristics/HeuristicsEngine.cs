@@ -44,7 +44,7 @@ namespace Heuristics
                     var cell = gameWithAction.Board[i, j];
                     if (!cell.IsEmpty())
                     {
-                        if (cell.Color == gameWithAction.ActualColorMove)
+                        if (cell.Color == (gameWithAction.ActualColorMove == Color.Red ? Color.Green : Color.Red))
                         {
                             actualCount++;
                         }
@@ -52,7 +52,7 @@ namespace Heuristics
                         {
                             if (actualLineType == LineType.Open)
                             {
-                                points += Math.Pow(actualCount / 2, 2);
+                                points += Math.Pow((double)actualCount / 2, 2);
                                 actualCount = 0;
                                 actualLineType = LineType.Closed;
                             }
@@ -66,7 +66,7 @@ namespace Heuristics
                         }
                         else
                         {
-                            points += Math.Pow(actualCount / 2, 2);
+                            points += Math.Pow((double)actualCount / 2, 2);
                         }
 
                         actualCount = 0;
@@ -76,7 +76,7 @@ namespace Heuristics
 
                 if (actualLineType == LineType.Open)
                 {
-                    points += Math.Pow(actualCount / 2, 2);
+                    points += Math.Pow((double)actualCount / 2, 2);
                 }
             }
 
@@ -89,7 +89,7 @@ namespace Heuristics
                     var cell = gameWithAction.Board[j, i];
                     if (!cell.IsEmpty())
                     {
-                        if (cell.Color == gameWithAction.ActualColorMove)
+                        if (cell.Color == (gameWithAction.ActualColorMove == Color.Red ? Color.Green : Color.Red))
                         {
                             actualCount++;
                         }
@@ -97,7 +97,7 @@ namespace Heuristics
                         {
                             if (actualLineType == LineType.Open)
                             {
-                                points += Math.Pow(actualCount / 2, 2);
+                                points += Math.Pow((double)actualCount / 2, 2);
                                 actualCount = 0;
                                 actualLineType = LineType.Closed;
                             }
@@ -111,7 +111,7 @@ namespace Heuristics
                         }
                         else
                         {
-                            points += Math.Pow(actualCount / 2, 2);
+                            points += Math.Pow((double)actualCount / 2, 2);
                         }
 
                         actualCount = 0;
@@ -121,7 +121,7 @@ namespace Heuristics
 
                 if (actualLineType == LineType.Open)
                 {
-                    points += Math.Pow(actualCount / 2, 2);
+                    points += Math.Pow((double)actualCount / 2, 2);
                 }
             }
 
