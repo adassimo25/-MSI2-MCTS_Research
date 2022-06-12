@@ -5,7 +5,7 @@ namespace MCTS
 {
     public class ClassicMCTSEngine<TAction> : MCTSEngine<TAction>
     {
-        protected override double CalculateState(State<TAction> state, int n, IEnumerable<State<TAction>> allStates, IEnumerable<TAction> actions)
+        protected override double CalculateState(State<TAction> state, int n, IEnumerable<TAction> actions)
         {
             if (state.Passes == 0)
             {

@@ -6,6 +6,7 @@ namespace MCTS
     {
         public int Id { get; set; }
         public double Points { get; set; } = 0.0;
+        public List<double> PointList { get; set; } = new();
         public int Passes { get; set; } = 0;
         public TAction Action { get; set; }
 
@@ -37,6 +38,7 @@ namespace MCTS
         {
             Passes++;
             Points += points;
+            PointList.Add(points);
         }
     }
 }
