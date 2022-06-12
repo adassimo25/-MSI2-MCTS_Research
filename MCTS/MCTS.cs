@@ -34,7 +34,7 @@ namespace MCTS
             for (var i = 0; i < IterationCount; i++)
             {
                 var currentState = RootState;
-                var actionsExecutedCount = actions.Count();
+                var firstPlayerMoves = actions.Count() % 2 == 0;
                 var iterationGame = game.GetGame(actions);
 
                 var visitedStates = new List<State<TAction>>();
@@ -72,7 +72,7 @@ namespace MCTS
                     }
                 }
 
-                var result = Rollout(iterationGame, ref actionsExecutedCount);
+                var result = Rollout(iterationGame, firstPlayerMoves);
 
                 Backpropagate(visitedStates, result);
             }
@@ -100,33 +100,27 @@ namespace MCTS
 
         private void Backpropagate(IEnumerable<State<TAction>> visitedStates, double result)
         {
-            foreach(var state in visitedStates)
+            foreach (var state in visitedStates)
             {
                 state.Visit(result);
             }
         }
 
-        private double Rollout(MCTSable<TAction> game, ref int actionsExecutedCount)
+        private double Rollout(MCTSable<TAction> game, bool firstPlayerMoves)
         {
-            while(true)
+            while (true)
             {
                 var points = game.GetFirstPlayerPoints();
                 if (points.HasValue)
                 {
-                    return WasFirstPlayerMove(ref actionsExecutedCount) ? (double)points : (double)(1.0 - points); 
+                    return 20.0 * (firstPlayerMoves ? (double)points : (double)(1.0 - points)); 
                 }
 
                 var availableActions = game.GetAvailableActions();
                 var randomAction = availableActions[Random.Next(availableActions.Count)];
 
                 game.ExecuteAction(randomAction);
-                actionsExecutedCount++;
             }
-        }
-
-        private bool WasFirstPlayerMove(ref int actionsExecutedCount)
-        {
-            return actionsExecutedCount % 2 == 1;
         }
 
         private void InitNew()

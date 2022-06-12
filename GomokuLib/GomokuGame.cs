@@ -64,7 +64,7 @@ namespace GomokuLib
         {
             if (IsDraw())
             {
-                return 50;
+                return 0.5;
             }
 
             var winner = GetWinner();
@@ -76,11 +76,11 @@ namespace GomokuLib
 
             if (winner == Color.Black)
             {
-                return 100;
+                return 1.0;
             }
             else
             {
-                return 0;
+                return 0.0;
             }
         }
 
