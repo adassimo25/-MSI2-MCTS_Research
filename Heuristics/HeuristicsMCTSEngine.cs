@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Heuristics
 {
-    public class ClassicMCTSEngine<TAction> : MCTSEngine<TAction>
+    public class HeuristicsMCTSEngine<TAction> : MCTSEngine<TAction>
     {
         protected override double CalculateState(State<TAction> state, int n, IEnumerable<State<TAction>> allStates, IEnumerable<TAction> actions)
         {
