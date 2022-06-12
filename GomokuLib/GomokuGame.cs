@@ -6,14 +6,29 @@ namespace GomokuLib
 {
     public class GomokuGame : MCTSable<Action>
     {
-        private static readonly int BoardSize = 15;
-        private static readonly int WinPiecesCount = 5;
+        private static readonly int BoardSize = 10;
+        private static readonly int WinPiecesCount = 4;
 
         public Cell[,] Board { get; set; } = new Cell[BoardSize, BoardSize];
         public Color ActualColorMove { get; set; } = Color.Black;
         public int ActualPieceNumber { get; set; } = 1;
         
         private GomokuGame() { }
+
+        public void PrintBoard()
+        {
+            for (int i = 0; i < BoardSize; i++)
+            {
+                for (int j = 0; j < BoardSize; j++)
+                {
+                    var ch = Board[i, j].Color == Color.Black ? "x" : (Board[i, j].Color == Color.White ? "o" : "-");
+                    Console.Write(ch);
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+        }
 
         public static GomokuGame CreateGomokuGame()
         {
@@ -43,6 +58,30 @@ namespace GomokuLib
         public MCTSable<Action> GetGame(IEnumerable<Action> actions)
         {
             return CreateGomokuGame(actions);
+        }
+
+        public double? GetFirstPlayerPoints()
+        {
+            if (IsDraw())
+            {
+                return 0.5;
+            }
+
+            var winner = GetWinner();
+
+            if (!winner.HasValue)
+            {
+                return null;
+            }
+
+            if (winner == Color.Black)
+            {
+                return 1.0;
+            }
+            else
+            {
+                return 0.0;
+            }
         }
 
         public bool IsDraw()
