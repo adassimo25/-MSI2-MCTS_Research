@@ -7,7 +7,6 @@ namespace GomokuGUI
 {
     public partial class Gomoku : Form
     {
-        private GameType GameType { get; set; }
         private IPlayer Player1 { get; set; }
         private IPlayer Player2 { get; set; }
         public int BoardSize { get; set; } = 13;
@@ -48,13 +47,13 @@ namespace GomokuGUI
         private void TrackBarBot1_ValueChanged(object sender, EventArgs e)
         {
             SetTrackBarValueInLabel(sender as TrackBar, labelBot1IterationsNumber);
-            Player1 = new Bot((Player1 as Bot).AlgorithmType, trackBarBot1.Value);
+            Player1 = new Bot(groupBoxBot1.Text, (Player1 as Bot).AlgorithmType, trackBarBot1.Value);
         }
 
         private void TrackBarBot2_ValueChanged(object sender, EventArgs e)
         {
             SetTrackBarValueInLabel(sender as TrackBar, labelBot2IterationsNumber);
-            Player2 = new Bot((Player2 as Bot).AlgorithmType, trackBarBot2.Value);
+            Player2 = new Bot(groupBoxBot2.Text, (Player2 as Bot).AlgorithmType, trackBarBot2.Value);
         }
 
         private static void SetTrackBarValueInLabel(TrackBar trackBar, Label label)
@@ -85,46 +84,49 @@ namespace GomokuGUI
 
         private void RadioButtonBot1MCTSClassic_CheckedChanged(object sender, EventArgs e)
         {
-            Player1 = new Bot(BotAlgorithmType.MCTSClassic, trackBarBot1.Value);
+            Player1 = new Bot(groupBoxBot1.Text, BotAlgorithmType.MCTSClassic, trackBarBot1.Value);
         }
 
-        private void RadioButtonBot1MCTSUCB1TUNED_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonBot1MCTSUCB1Tuned_CheckedChanged(object sender, EventArgs e)
         {
-            Player1 = new Bot(BotAlgorithmType.MCTSUCB1TUNED, trackBarBot1.Value);
+            Player1 = new Bot(groupBoxBot1.Text, BotAlgorithmType.MCTSUCB1Tuned, trackBarBot1.Value);
         }
 
-        private void RadioButtonBot1MCTSUCB1withVF_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonBot1MCTSUCB1withHeuristics_CheckedChanged(object sender, EventArgs e)
         {
-            Player1 = new Bot(BotAlgorithmType.MCTSUCB1withValueFunction, trackBarBot1.Value);
+            Player1 = new Bot(groupBoxBot1.Text, BotAlgorithmType.MCTSUCB1withHeuristics, trackBarBot1.Value);
         }
 
-        private void RadioButtonBot1GreedyHeuristic_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonBot1GreedyHeuristics_CheckedChanged(object sender, EventArgs e)
         {
-            Player1 = new Bot(BotAlgorithmType.GreedyHeuristic);
+            Player1 = new Bot(groupBoxBot1.Text, BotAlgorithmType.GreedyHeuristics);
         }
 
         private void RadioButtonBot2MCTSClassic_CheckedChanged(object sender, EventArgs e)
         {
-            Player2 = new Bot(BotAlgorithmType.MCTSClassic, trackBarBot2.Value);
+            Player2 = new Bot(groupBoxBot2.Text, BotAlgorithmType.MCTSClassic, trackBarBot2.Value);
         }
 
-        private void RadioButtonBot2MCTSUCB1TUNED_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonBot2MCTSUCB1Tuned_CheckedChanged(object sender, EventArgs e)
         {
-            Player2 = new Bot(BotAlgorithmType.MCTSUCB1TUNED, trackBarBot2.Value);
+            Player2 = new Bot(groupBoxBot2.Text, BotAlgorithmType.MCTSUCB1Tuned, trackBarBot2.Value);
         }
 
-        private void RadioButtonBot2MCTSUCB1withVF_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonBot2MCTSUCB1withHeuristics_CheckedChanged(object sender, EventArgs e)
         {
-            Player2 = new Bot(BotAlgorithmType.MCTSUCB1withValueFunction, trackBarBot2.Value);
+            Player2 = new Bot(groupBoxBot2.Text, BotAlgorithmType.MCTSUCB1withHeuristics, trackBarBot2.Value);
         }
 
-        private void RadioButtonBot2GreedyHeuristic_CheckedChanged(object sender, EventArgs e)
+        private void RadioButtonBot2GreedyHeuristics_CheckedChanged(object sender, EventArgs e)
         {
-            Player2 = new Bot(BotAlgorithmType.GreedyHeuristic);
+            Player2 = new Bot(groupBoxBot2.Text, BotAlgorithmType.GreedyHeuristics);
         }
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
+            ClearBoard();
+            DrawNet();
+
             buttonStart.Enabled = false;
             editGameParametersToolStripMenuItem.Enabled = false;
             tableLayoutPanelMenu.Enabled = false;

@@ -1,19 +1,20 @@
-﻿using System;
+﻿using MCTS;
+using System;
 using System.Collections.Generic;
-using MCTS;
 
 namespace GomokuLib
 {
-    public class GomokuGame : MCTSable<Action>
+    public class GomokuGame : IMCTSAble<Action>
     {
         private static readonly int BoardSize = 10;
         private static readonly int WinPiecesCount = 4;
 
         public Cell[,] Board { get; set; } = new Cell[BoardSize, BoardSize];
-        public Color ActualColorMove { get; set; } = Color.Black;
+        public Color ActualColorMove { get; set; } = Color.Red;
         public int ActualPieceNumber { get; set; } = 1;
-        
-        private GomokuGame() { }
+
+        private GomokuGame()
+        { }
 
         public void PrintBoard()
         {
@@ -21,7 +22,7 @@ namespace GomokuLib
             {
                 for (int j = 0; j < BoardSize; j++)
                 {
-                    var ch = Board[i, j].Color == Color.Black ? "x" : (Board[i, j].Color == Color.White ? "o" : "-");
+                    var ch = Board[i, j].Color == Color.Red ? "x" : (Board[i, j].Color == Color.Green ? "o" : "-");
                     Console.Write(ch);
                 }
                 Console.WriteLine();
@@ -55,7 +56,7 @@ namespace GomokuLib
             return game;
         }
 
-        public MCTSable<Action> GetGame(IEnumerable<Action> actions)
+        public IMCTSAble<Action> GetGame(IEnumerable<Action> actions)
         {
             return CreateGomokuGame(actions);
         }
@@ -74,7 +75,7 @@ namespace GomokuLib
                 return null;
             }
 
-            if (winner == Color.Black)
+            if (winner == Color.Red)
             {
                 return 1.0;
             }
@@ -187,13 +188,13 @@ namespace GomokuLib
         {
             ActualPieceNumber++;
 
-            if (ActualColorMove == Color.Black)
+            if (ActualColorMove == Color.Red)
             {
-                ActualColorMove = Color.White;
+                ActualColorMove = Color.Green;
             }
             else
             {
-                ActualColorMove = Color.Black;
+                ActualColorMove = Color.Red;
             }
         }
     }

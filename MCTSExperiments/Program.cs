@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using GomokuLib;
+﻿using GomokuLib;
 using MCTS;
+using System;
+using System.Collections.Generic;
 
 namespace MCTSExperiments
 {
-    class Program
+    internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             var game = GomokuGame.CreateGomokuGame();
 
             var engine1 = new ClassicMCTSEngine<GomokuLib.Action>() { IterationCount = 1000 };
-            // var engine2 = new ClassicMCTSEngine<GomokuLib.Action>() { IterationCount = 100 };
             var engine2 = new UCB1TunedMCTSEngine<GomokuLib.Action>() { IterationCount = 100 };
 
             var moveCount = 0;
             var actionsExecuted = new List<GomokuLib.Action>();
 
-            Color? winner = null; 
+            Color? winner;
 
             while (true)
             {
@@ -34,7 +32,6 @@ namespace MCTSExperiments
                 }
 
                 var action = currentEngine.CalculateFromExecutedActions(game, actionsExecuted);
-
 
                 game.ExecuteAction(action);
 
@@ -55,7 +52,7 @@ namespace MCTSExperiments
             }
             else
             {
-                var winnerString = winner.Value == Color.Black ? "engine1" : "engine2";
+                var winnerString = winner.Value == Color.Green ? "engine1" : "engine2";
                 Console.WriteLine($"Winner: {winnerString}");
             }
         }

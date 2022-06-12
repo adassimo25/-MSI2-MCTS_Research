@@ -2,11 +2,14 @@
 
 namespace MCTS
 {
-    public interface MCTSable<TAction>
+    public interface IMCTSAble<TAction>
     {
-        MCTSable<TAction> GetGame(IEnumerable<TAction> actions);
+        IMCTSAble<TAction> GetGame(IEnumerable<TAction> actions);
+
         List<TAction> GetAvailableActions();
+
         void ExecuteAction(TAction action);
+
         double? GetFirstPlayerPoints();
     }
 }

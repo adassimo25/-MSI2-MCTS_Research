@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using GomokuLib;
+﻿using GomokuLib;
 using MCTS;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Heuristics
 {
-    class HeuristicEngine<TAction> : Engine<TAction>
+    public class HeuristicsEngine<TAction> : IEngine<TAction>
     {
-        public TAction CalculateFromExecutedActions(MCTSable<TAction> game, IEnumerable<TAction> actions)
+        public TAction CalculateFromExecutedActions(IMCTSAble<TAction> game, IEnumerable<TAction> actions)
         {
             var gomokuActions = actions.Select(a => a as Action).ToList();
             var gomokuGame = GomokuGame.CreateGomokuGame(gomokuActions);
@@ -27,14 +27,14 @@ namespace Heuristics
                     bestAction = availableAction;
                     bestScore = result;
                 }
-
             }
             return bestAction;
         }
 
         public static double CalculateHeuristics(GomokuGame gameWithAction)
         {
-            // todo
+            // TODO
+
             return 0;
         }
     }

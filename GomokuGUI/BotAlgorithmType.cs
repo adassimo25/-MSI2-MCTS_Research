@@ -2,9 +2,9 @@
 {
     public enum BotAlgorithmType
     {
-        MCTSClassic = 0,
-        MCTSUCB1TUNED = 1,
-        MCTSUCB1withValueFunction = 2,
-        GreedyHeuristic = 3
+        MCTSClassic = 1,
+        MCTSUCB1Tuned = 2,
+        MCTSUCB1withHeuristics = 3,
+        GreedyHeuristics = 4
     };
 }

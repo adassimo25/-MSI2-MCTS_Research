@@ -20,7 +20,7 @@ namespace Heuristics
 
             var d = Math.Sqrt(2);
 
-            return state.Points / state.Passes + Math.Sqrt(2) * Math.Sqrt(Math.Log(n) / state.Passes) + d * HeuristicEngine<TAction>.CalculateHeuristics(gomokuGame);
+            return state.Points / state.Passes + Math.Sqrt(2) * Math.Sqrt(Math.Log(n) / state.Passes) + d * HeuristicsEngine<TAction>.CalculateHeuristics(gomokuGame);
         }
     }
 }

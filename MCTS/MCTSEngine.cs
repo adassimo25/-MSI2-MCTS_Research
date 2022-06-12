@@ -4,16 +4,16 @@ using System.Linq;
 
 namespace MCTS
 {
-    public abstract class MCTSEngine<TAction> : Engine<TAction>
+    public abstract class MCTSEngine<TAction> : IEngine<TAction>
     {
         public int IterationCount { get; set; }
-        
+
         private State<TAction> RootState { get; set; }
         private int LastStateNumber { get; set; }
         private List<State<TAction>> AllStates { get; set; } = new();
         private Random Random { get; set; } = new Random();
 
-        public TAction CalculateFromExecutedActions(MCTSable<TAction> game, IEnumerable<TAction> actions)
+        public TAction CalculateFromExecutedActions(IMCTSAble<TAction> game, IEnumerable<TAction> actions)
         {
             InitNew();
             var initialActions = game.GetAvailableActions();
@@ -95,7 +95,7 @@ namespace MCTS
             return bestChild;
         }
 
-        private void Backpropagate(IEnumerable<State<TAction>> visitedStates, double result)
+        private static void Backpropagate(IEnumerable<State<TAction>> visitedStates, double result)
         {
             foreach (var state in visitedStates)
             {
@@ -103,14 +103,14 @@ namespace MCTS
             }
         }
 
-        private double Rollout(MCTSable<TAction> game, bool firstPlayerMoves)
+        private double Rollout(IMCTSAble<TAction> game, bool firstPlayerMoves)
         {
             while (true)
             {
                 var points = game.GetFirstPlayerPoints();
                 if (points.HasValue)
                 {
-                    return 1.0 * (firstPlayerMoves ? (double)points : (double)(1.0 - points)); 
+                    return 1.0 * (firstPlayerMoves ? (double)points : (double)(1.0 - points));
                 }
 
                 var availableActions = game.GetAvailableActions();
