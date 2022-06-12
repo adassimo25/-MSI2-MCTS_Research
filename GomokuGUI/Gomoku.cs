@@ -1,5 +1,6 @@
 ﻿using GomokuGUI.Players;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GomokuGUI
@@ -9,11 +10,18 @@ namespace GomokuGUI
         private GameType GameType { get; set; }
         private IPlayer Player1 { get; set; }
         private IPlayer Player2 { get; set; }
+        public int BoardSize { get; set; } = 13;
+        public int Winning { get; set; } = 5;
 
         public Gomoku()
         {
             InitializeComponent();
             InitializeGameDetails();
+
+            pictureBox.Image = new Bitmap(pictureBox.Width, pictureBox.Height);
+            graphics = Graphics.FromImage(pictureBox.Image);
+
+            DrawNet();
         }
 
         private void InitializeGameDetails()
@@ -58,11 +66,6 @@ namespace GomokuGUI
             trackBar.Value = trackBar.TickFrequency * index;
 
             label.Text = trackBar.Value.ToString();
-        }
-
-        private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void RadioButtonBvsB_CheckedChanged(object sender, EventArgs e)
@@ -122,7 +125,30 @@ namespace GomokuGUI
 
         private void ButtonStart_Click(object sender, EventArgs e)
         {
+            buttonStart.Enabled = false;
+            editGameParametersToolStripMenuItem.Enabled = false;
+            tableLayoutPanelMenu.Enabled = false;
+
             // TODO game
+        }
+
+        private void PictureBox_Click(object sender, EventArgs e)
+        {
+            // TODO when player game
+        }
+
+        private void EditGameParametersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GameParameters gameParameters = new(this);
+            gameParameters.ShowDialog();
+
+            ClearBoard();
+            DrawNet();
+        }
+
+        private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

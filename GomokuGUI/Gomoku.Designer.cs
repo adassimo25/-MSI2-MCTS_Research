@@ -32,7 +32,7 @@ namespace GomokuGUI
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editGameParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanelMenu = new System.Windows.Forms.TableLayoutPanel();
@@ -66,6 +66,7 @@ namespace GomokuGUI
             this.labelBot1SelectAlgorithm = new System.Windows.Forms.Label();
             this.radioButtonBot1MCTSClassic = new System.Windows.Forms.RadioButton();
             this.radioButtonBot1MCTSUCB1TUNED = new System.Windows.Forms.RadioButton();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanelMain.SuspendLayout();
@@ -115,17 +116,18 @@ namespace GomokuGUI
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editGameParametersToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(60, 26);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
-            // closeToolStripMenuItem
+            // editGameParametersToolStripMenuItem
             // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
+            this.editGameParametersToolStripMenuItem.Name = "editGameParametersToolStripMenuItem";
+            this.editGameParametersToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.editGameParametersToolStripMenuItem.Text = "Edit game parameters";
+            this.editGameParametersToolStripMenuItem.Click += new System.EventHandler(this.EditGameParametersToolStripMenuItem_Click);
             // 
             // tableLayoutPanelMain
             // 
@@ -153,6 +155,7 @@ namespace GomokuGUI
             this.pictureBox.Size = new System.Drawing.Size(693, 707);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.PictureBox_Click);
             // 
             // tableLayoutPanelMenu
             // 
@@ -583,6 +586,13 @@ namespace GomokuGUI
             this.radioButtonBot1MCTSUCB1TUNED.UseVisualStyleBackColor = true;
             this.radioButtonBot1MCTSUCB1TUNED.CheckedChanged += new System.EventHandler(this.RadioButtonBot1MCTSUCB1TUNED_CheckedChanged);
             // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
+            // 
             // Gomoku
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -628,7 +638,6 @@ namespace GomokuGUI
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMenu;
@@ -662,6 +671,8 @@ namespace GomokuGUI
         private System.Windows.Forms.Label labelBot1SelectAlgorithm;
         private System.Windows.Forms.RadioButton radioButtonBot1MCTSClassic;
         private System.Windows.Forms.RadioButton radioButtonBot1MCTSUCB1TUNED;
+        private System.Windows.Forms.ToolStripMenuItem editGameParametersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
     }
 }
 

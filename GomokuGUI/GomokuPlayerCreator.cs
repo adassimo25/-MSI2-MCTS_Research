@@ -6,9 +6,9 @@ namespace GomokuGUI
     {
         private static Human CreateHuman() => new();
 
-        private Bot CreateBot1() => new Bot(GetBot1CheckedAlgorithm(), trackBarBot1.Value);
+        private Bot CreateBot1() => new(GetBot1CheckedAlgorithm(), trackBarBot1.Value);
 
-        private Bot CreateBot2() => new Bot(GetBot2CheckedAlgorithm(), trackBarBot2.Value);
+        private Bot CreateBot2() => new(GetBot2CheckedAlgorithm(), trackBarBot2.Value);
 
         private BotAlgorithmType GetBot1CheckedAlgorithm()
         {
