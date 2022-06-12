@@ -10,7 +10,6 @@ namespace MCTS
 
         private State<TAction> RootState { get; set; }
         private int LastStateNumber { get; set; }
-        private List<State<TAction>> AllStates { get; set; } = new();
         private Random Random { get; set; } = new Random();
 
         public TAction CalculateFromExecutedActions(IMCTSAble<TAction> game, IEnumerable<TAction> actions)
@@ -19,9 +18,7 @@ namespace MCTS
             var initialActions = game.GetAvailableActions();
             foreach (var availableAction in initialActions)
             {
-                var newState = State<TAction>.Create(++LastStateNumber, availableAction);
-                AllStates.Add(newState);
-                RootState.AddChild(newState);
+                RootState.AddChild(State<TAction>.Create(++LastStateNumber, availableAction));
             }
 
             for (var i = 0; i < IterationCount; i++)
@@ -30,7 +27,7 @@ namespace MCTS
                 var firstPlayerMoves = actions.Count() % 2 == 0;
                 var iterationGame = game.GetGame(actions);
 
-                var visitedStates = new List<State<TAction>>();
+                var visitedStates = new List<State<TAction>> { RootState };
 
                 while (true)
                 {
@@ -44,7 +41,7 @@ namespace MCTS
 
                     foreach (var child in currentState.Childs)
                     {
-                        var res = CalculateState(child, i, AllStates, actions);
+                        var res = CalculateState(child, currentState.Passes, actions);
                         if (res > bestValue)
                         {
                             bestChild = child;
@@ -61,9 +58,7 @@ namespace MCTS
                     var availableActions = iterationGame.GetAvailableActions();
                     foreach (var availableAction in availableActions)
                     {
-                        var newState = State<TAction>.Create(++LastStateNumber, availableAction);
-                        AllStates.Add(newState);
-                        currentState.AddChild(newState);
+                        currentState.AddChild(State<TAction>.Create(++LastStateNumber, availableAction));
                     }
                 }
 
@@ -72,19 +67,19 @@ namespace MCTS
                 Backpropagate(visitedStates, result);
             }
 
-            return GetResultState(RootState, actions).Action;
+            return GetResultState(RootState).Action;
         }
 
-        protected abstract double CalculateState(State<TAction> state, int n, IEnumerable<State<TAction>> allStates, IEnumerable<TAction> actions);
+        protected abstract double CalculateState(State<TAction> state, int n, IEnumerable<TAction> actions);
 
-        private State<TAction> GetResultState(State<TAction> rootState, IEnumerable<TAction> actions)
+        private State<TAction> GetResultState(State<TAction> rootState)
         {
             State<TAction> bestChild = null;
             double bestValue = double.MinValue;
 
             foreach (var child in rootState.Childs)
             {
-                var res = CalculateState(child, IterationCount, AllStates, actions);
+                var res = child.Points;
                 if (res > bestValue)
                 {
                     bestValue = res;

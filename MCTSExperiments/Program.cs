@@ -12,7 +12,7 @@ namespace MCTSExperiments
             var game = GomokuGame.CreateGomokuGame();
 
             var engine1 = new ClassicMCTSEngine<GomokuLib.Action>() { IterationCount = 1000 };
-            var engine2 = new UCB1TunedMCTSEngine<GomokuLib.Action>() { IterationCount = 100 };
+            var engine2 = new UCB1TunedMCTSEngine<GomokuLib.Action>() { IterationCount = 500 };
 
             var moveCount = 0;
             var actionsExecuted = new List<GomokuLib.Action>();
