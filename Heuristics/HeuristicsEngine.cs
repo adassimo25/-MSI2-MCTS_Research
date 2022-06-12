@@ -127,6 +127,110 @@ namespace Heuristics
                 }
             }
 
+            for (var i = - (GomokuGame.BoardSize - 1); i <= GomokuGame.BoardSize - 1; i++)
+            {
+                var actualLineType = LineType.Closed;
+                var actualCount = 0;
+                for (var j = 0; j <= GomokuGame.BoardSize - 1; j++)
+                {
+                    var x = i + j;
+                    var y = j;
+                    if (x < 0 || x >= GomokuGame.BoardSize)
+                    {
+                        continue;
+                    }
+
+                    var cell = gameWithAction.Board[x, y];
+                    if (!cell.IsEmpty())
+                    {
+                        if (cell.Color == (gameWithAction.ActualColorMove == Color.Red ? Color.Green : Color.Red))
+                        {
+                            actualCount++;
+                        }
+                        else
+                        {
+                            if (actualLineType == LineType.Open)
+                            {
+                                points += Math.Pow((double)actualCount / 2, 2);
+                                actualCount = 0;
+                                actualLineType = LineType.Closed;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (actualLineType == LineType.Open)
+                        {
+                            points += Math.Pow(actualCount, 2);
+                        }
+                        else
+                        {
+                            points += Math.Pow((double)actualCount / 2, 2);
+                        }
+
+                        actualCount = 0;
+                        actualLineType = LineType.Open;
+                    }
+                }
+
+                if (actualLineType == LineType.Open)
+                {
+                    points += Math.Pow((double)actualCount / 2, 2);
+                }
+            }
+
+            for (var i = -(GomokuGame.BoardSize - 1); i <= GomokuGame.BoardSize - 1; i++)
+            {
+                var actualLineType = LineType.Closed;
+                var actualCount = 0;
+                for (var j = 0; j <= GomokuGame.BoardSize - 1; j++)
+                {
+                    var x = i + j;
+                    var y = GomokuGame.BoardSize - 1 - j;
+                    if (x < 0 || x >= GomokuGame.BoardSize)
+                    {
+                        continue;
+                    }
+
+                    var cell = gameWithAction.Board[x, y];
+                    if (!cell.IsEmpty())
+                    {
+                        if (cell.Color == (gameWithAction.ActualColorMove == Color.Red ? Color.Green : Color.Red))
+                        {
+                            actualCount++;
+                        }
+                        else
+                        {
+                            if (actualLineType == LineType.Open)
+                            {
+                                points += Math.Pow((double)actualCount / 2, 2);
+                                actualCount = 0;
+                                actualLineType = LineType.Closed;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (actualLineType == LineType.Open)
+                        {
+                            points += Math.Pow(actualCount, 2);
+                        }
+                        else
+                        {
+                            points += Math.Pow((double)actualCount / 2, 2);
+                        }
+
+                        actualCount = 0;
+                        actualLineType = LineType.Open;
+                    }
+                }
+
+                if (actualLineType == LineType.Open)
+                {
+                    points += Math.Pow((double)actualCount / 2, 2);
+                }
+            }
+
             return points;
         }
 
