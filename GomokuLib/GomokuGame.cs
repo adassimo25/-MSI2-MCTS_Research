@@ -116,7 +116,7 @@ namespace GomokuLib
         }
 
         public Color? GetWinner()
-            => CheckDiagonalWinner() ?? CheckHorizontalWinner() ?? CheckVertialWinner() ?? null;
+            => CheckDiagonalWinner() ?? CheckHorizontalWinner() ?? CheckVerticalWinner() ?? null;
 
         private Color? CheckDiagonalWinner()
         {
@@ -258,7 +258,7 @@ namespace GomokuLib
             return null;
         }
 
-        private Color? CheckVertialWinner()
+        private Color? CheckVerticalWinner()
         {
             for (var i = 0; i < BoardSize; i++)
             {
