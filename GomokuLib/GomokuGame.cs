@@ -116,72 +116,205 @@ namespace GomokuLib
         }
 
         public Color? GetWinner()
-        {
-            // TODO ukośne
+            => CheckDiagonalWinner() ?? CheckHorizontalWinner() ?? CheckVertialWinner() ?? null;
 
-            for (var i = 0; i < BoardSize; i++)
+        private Color? CheckDiagonalWinner()
+        {
+            for (var i = 0; i < BoardSize - WinPiecesCount + 1; i++)
             {
-                var actualCount = 0;
-                Color? actualColor = null;
-                for (var j = 0; j < BoardSize; j++)
+                var bestCount = 0;
+                Color? bestColor = null;
+
+                var currentCount = 0;
+                Color? currentColor = null;
+
+                for (var j = 0; j < BoardSize - i; j++)
                 {
-                    var cell = Board[i, j];
-                    if (!cell.IsEmpty())
-                    {
-                        if (cell.Color == actualColor)
-                        {
-                            actualCount++;
-                            if (actualCount == WinPiecesCount)
-                            {
-                                return actualColor;
-                            }
-                        }
-                        else
-                        {
-                            actualColor = cell.Color;
-                            actualCount = 1;
-                        }
-                    }
-                    else
-                    {
-                        actualColor = null;
-                        actualCount = 0;
-                    }
+                    AnalyzeCell(Board[j, j + i],
+                        ref bestCount, ref bestColor, ref currentCount, ref currentColor);
+                }
+
+                if (bestCount < currentCount)
+                {
+                    bestCount = currentCount;
+                    bestColor = currentColor;
+                }
+
+                if (bestCount == WinPiecesCount)
+                {
+                    return bestColor;
                 }
             }
 
-            for (var i = 0; i < BoardSize; i++)
+            for (var i = 1; i < BoardSize - WinPiecesCount + 1; i++)
             {
-                var actualCount = 0;
-                Color? actualColor = null;
-                for (var j = 0; j < BoardSize; j++)
+                var bestCount = 0;
+                Color? bestColor = null;
+
+                var currentCount = 0;
+                Color? currentColor = null;
+
+                for (var j = 0; j < BoardSize - i; j++)
                 {
-                    var cell = Board[j, i];
-                    if (!cell.IsEmpty())
-                    {
-                        if (cell.Color == actualColor)
-                        {
-                            actualCount++;
-                            if (actualCount == 5)
-                            {
-                                return actualColor;
-                            }
-                        }
-                        else
-                        {
-                            actualColor = cell.Color;
-                            actualCount = 1;
-                        }
-                    }
-                    else
-                    {
-                        actualColor = null;
-                        actualCount = 0;
-                    }
+                    AnalyzeCell(Board[j + i, j],
+                        ref bestCount, ref bestColor, ref currentCount, ref currentColor);
+                }
+
+                if (bestCount < currentCount)
+                {
+                    bestCount = currentCount;
+                    bestColor = currentColor;
+                }
+
+                if (bestCount == WinPiecesCount)
+                {
+                    return bestColor;
+                }
+            }
+
+            for (var i = 0; i < BoardSize - WinPiecesCount + 1; i++)
+            {
+                var bestCount = 0;
+                Color? bestColor = null;
+
+                var currentCount = 0;
+                Color? currentColor = null;
+
+                for (var j = 0; j < BoardSize - i; j++)
+                {
+                    AnalyzeCell(Board[j, BoardSize - 1 - (j + i)],
+                        ref bestCount, ref bestColor, ref currentCount, ref currentColor);
+                }
+
+                if (bestCount < currentCount)
+                {
+                    bestCount = currentCount;
+                    bestColor = currentColor;
+                }
+
+                if (bestCount == WinPiecesCount)
+                {
+                    return bestColor;
+                }
+            }
+
+            for (var i = 1; i < BoardSize - WinPiecesCount + 1; i++)
+            {
+                var bestCount = 0;
+                Color? bestColor = null;
+
+                var currentCount = 0;
+                Color? currentColor = null;
+
+                for (var j = 0; j < BoardSize - i; j++)
+                {
+                    AnalyzeCell(Board[j + i, BoardSize - 1 - j],
+                        ref bestCount, ref bestColor, ref currentCount, ref currentColor);
+                }
+
+                if (bestCount < currentCount)
+                {
+                    bestCount = currentCount;
+                    bestColor = currentColor;
+                }
+
+                if (bestCount == WinPiecesCount)
+                {
+                    return bestColor;
                 }
             }
 
             return null;
+        }
+
+        private Color? CheckHorizontalWinner()
+        {
+            for (var i = 0; i < BoardSize; i++)
+            {
+                var bestCount = 0;
+                Color? bestColor = null;
+
+                var currentCount = 0;
+                Color? currentColor = null;
+
+                for (var j = 0; j < BoardSize; j++)
+                {
+                    AnalyzeCell(Board[i, j],
+                        ref bestCount, ref bestColor, ref currentCount, ref currentColor);
+                }
+
+                if (bestCount < currentCount)
+                {
+                    bestCount = currentCount;
+                    bestColor = currentColor;
+                }
+
+                if (bestCount == WinPiecesCount)
+                {
+                    return bestColor;
+                }
+            }
+
+            return null;
+        }
+
+        private Color? CheckVertialWinner()
+        {
+            for (var i = 0; i < BoardSize; i++)
+            {
+                var bestCount = 0;
+                Color? bestColor = null;
+
+                var currentCount = 0;
+                Color? currentColor = null;
+
+                for (var j = 0; j < BoardSize; j++)
+                {
+                    AnalyzeCell(Board[j, i],
+                        ref bestCount, ref bestColor, ref currentCount, ref currentColor);
+                }
+
+                if (bestCount < currentCount)
+                {
+                    bestCount = currentCount;
+                    bestColor = currentColor;
+                }
+
+                if (bestCount == WinPiecesCount)
+                {
+                    return bestColor;
+                }
+            }
+
+            return null;
+        }
+
+        private static void AnalyzeCell(Cell cell,
+            ref int bestCount, ref Color? bestColor, ref int currentCount, ref Color? currentColor)
+        {
+            if (!cell.IsEmpty())
+            {
+                if (cell.Color == currentColor)
+                {
+                    currentCount++;
+                }
+                else
+                {
+                    if (bestCount < currentCount)
+                    {
+                        bestCount = currentCount;
+                        bestColor = currentColor;
+                    }
+
+                    currentCount = 1;
+                    currentColor = cell.Color;
+                }
+            }
+            else
+            {
+                currentCount = 1;
+                currentColor = cell.Color;
+            }
         }
 
         private void UpdateActualColorMoveAndPieceNumber()
