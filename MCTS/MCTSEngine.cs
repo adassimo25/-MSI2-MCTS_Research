@@ -6,6 +6,8 @@ namespace MCTS
 {
     public abstract class MCTSEngine<TAction> : IEngine<TAction>
     {
+        public abstract string Name { get; }
+
         public int IterationCount { get; set; }
 
         private State<TAction> RootState { get; set; }

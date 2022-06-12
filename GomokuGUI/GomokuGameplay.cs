@@ -1,5 +1,4 @@
-﻿using GomokuGUI.Players;
-using GomokuLib;
+﻿using GomokuLib;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,7 +19,7 @@ namespace GomokuGUI
 
             while (true)
             {
-                IPlayer currentPlayer = ((++moveCount % 2) == 1) ? player1 : player2;
+                var currentPlayer = ((++moveCount % 2) == 1) ? player1 : player2;
                 Text = $"Gomoku -> {currentPlayer.Name}'s move!";
 
                 var action = await currentPlayer.MakeMoveAsync(Game, actionsExecuted);

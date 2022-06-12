@@ -5,6 +5,8 @@ namespace MCTS
 {
     public class UCB1TunedMCTSEngine<TAction> : MCTSEngine<TAction>
     {
+        public override string Name { get; } = "UCB1TunedMCTS";
+
         protected override double CalculateState(State<TAction> state, int n, IEnumerable<TAction> actions)
         {
             if (state.Passes == 0)

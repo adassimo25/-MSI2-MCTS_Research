@@ -239,7 +239,7 @@ namespace GomokuLib
 
                 for (var j = 0; j < BoardSize; j++)
                 {
-                    AnalyzeCell(Board[i, j],
+                    AnalyzeCell(Board[j, i],
                         ref bestCount, ref bestColor, ref currentCount, ref currentColor);
                 }
 
@@ -270,7 +270,7 @@ namespace GomokuLib
 
                 for (var j = 0; j < BoardSize; j++)
                 {
-                    AnalyzeCell(Board[j, i],
+                    AnalyzeCell(Board[i, j],
                         ref bestCount, ref bestColor, ref currentCount, ref currentColor);
                 }
 
@@ -292,26 +292,18 @@ namespace GomokuLib
         private static void AnalyzeCell(Cell cell,
             ref int bestCount, ref Color? bestColor, ref int currentCount, ref Color? currentColor)
         {
-            if (!cell.IsEmpty())
+            if (!cell.IsEmpty() && cell.Color == currentColor)
             {
-                if (cell.Color == currentColor)
-                {
-                    currentCount++;
-                }
-                else
-                {
-                    if (bestCount < currentCount)
-                    {
-                        bestCount = currentCount;
-                        bestColor = currentColor;
-                    }
-
-                    currentCount = 1;
-                    currentColor = cell.Color;
-                }
+                currentCount++;
             }
             else
             {
+                if (bestCount < currentCount)
+                {
+                    bestCount = currentCount;
+                    bestColor = currentColor;
+                }
+
                 currentCount = 1;
                 currentColor = cell.Color;
             }

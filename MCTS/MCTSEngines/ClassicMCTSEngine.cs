@@ -5,6 +5,8 @@ namespace MCTS
 {
     public class ClassicMCTSEngine<TAction> : MCTSEngine<TAction>
     {
+        public override string Name { get; } = "ClassicMCTS";
+
         protected override double CalculateState(State<TAction> state, int n, IEnumerable<TAction> actions)
         {
             if (state.Passes == 0)
