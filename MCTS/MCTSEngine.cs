@@ -4,23 +4,14 @@ using System.Linq;
 
 namespace MCTS
 {
-    public class MCTSEngine<TAction>
+    public abstract class MCTSEngine<TAction> : Engine<TAction>
     {
         public int IterationCount { get; set; }
         
         private State<TAction> RootState { get; set; }
         private int LastStateNumber { get; set; }
+        private List<State<TAction>> AllStates { get; set; } = new();
         private Random Random { get; set; } = new Random();
-
-        public double CalculateState(State<TAction> state, int n)
-        {
-            if (state.Passes == 0)
-            {
-                return double.MaxValue;
-            }
-
-            return state.Points / state.Passes + Math.Sqrt(2) * Math.Sqrt(Math.Log(n)/state.Passes);
-        }
 
         public TAction CalculateFromExecutedActions(MCTSable<TAction> game, IEnumerable<TAction> actions)
         {
@@ -28,7 +19,9 @@ namespace MCTS
             var initialActions = game.GetAvailableActions();
             foreach (var availableAction in initialActions)
             {
-                RootState.AddChild(State<TAction>.Create(++LastStateNumber, availableAction));
+                var newState = State<TAction>.Create(++LastStateNumber, availableAction);
+                AllStates.Add(newState);
+                RootState.AddChild(newState);
             }
 
             for (var i = 0; i < IterationCount; i++)
@@ -51,7 +44,7 @@ namespace MCTS
 
                     foreach (var child in currentState.Childs)
                     {
-                        var res = CalculateState(child, i);
+                        var res = CalculateState(child, i, AllStates, actions);
                         if (res > bestValue)
                         {
                             bestChild = child;
@@ -68,7 +61,9 @@ namespace MCTS
                     var availableActions = iterationGame.GetAvailableActions();
                     foreach (var availableAction in availableActions)
                     {
-                        currentState.AddChild(State<TAction>.Create(++LastStateNumber, availableAction));
+                        var newState = State<TAction>.Create(++LastStateNumber, availableAction);
+                        AllStates.Add(newState);
+                        currentState.AddChild(newState);
                     }
                 }
 
@@ -77,17 +72,19 @@ namespace MCTS
                 Backpropagate(visitedStates, result);
             }
 
-            return GetResultState(RootState).Action;
+            return GetResultState(RootState, actions).Action;
         }
 
-        private State<TAction> GetResultState(State<TAction> rootState)
+        protected abstract double CalculateState(State<TAction> state, int n, IEnumerable<State<TAction>> allStates, IEnumerable<TAction> actions);
+
+        private State<TAction> GetResultState(State<TAction> rootState, IEnumerable<TAction> actions)
         {
             State<TAction> bestChild = null;
             double bestValue = double.MinValue;
 
             foreach (var child in rootState.Childs)
             {
-                var res = CalculateState(child, IterationCount);
+                var res = CalculateState(child, IterationCount, AllStates, actions);
                 if (res > bestValue)
                 {
                     bestValue = res;
@@ -113,7 +110,7 @@ namespace MCTS
                 var points = game.GetFirstPlayerPoints();
                 if (points.HasValue)
                 {
-                    return 20.0 * (firstPlayerMoves ? (double)points : (double)(1.0 - points)); 
+                    return 1.0 * (firstPlayerMoves ? (double)points : (double)(1.0 - points)); 
                 }
 
                 var availableActions = game.GetAvailableActions();
@@ -127,44 +124,6 @@ namespace MCTS
         {
             RootState = State<TAction>.CreateInitial();
             LastStateNumber = 0;
-        }
-    }
-
-    public class State<TAction>
-    {
-        public int Id { get; set; }
-        public double Points { get; set; } = 0.0;
-        public int Passes { get; set; } = 0;
-        public TAction Action { get; set; }
-
-        public List<State<TAction>> Childs { get; set; } = new();
-
-        public static State<TAction> Create(int id, TAction action)
-        {
-            return new()
-            {
-                Id = id,
-                Action = action,
-            };
-        }
-
-        public static State<TAction> CreateInitial()
-        {
-            return new()
-            {
-                Id = 0,
-            };
-        }
-
-        public void AddChild(State<TAction> state)
-        {
-            Childs.Add(state);
-        }
-
-        public void Visit(double points)
-        {
-            Passes++;
-            Points += points;
         }
     }
 }
