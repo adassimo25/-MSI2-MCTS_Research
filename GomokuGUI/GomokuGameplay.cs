@@ -2,30 +2,30 @@
 using GomokuLib;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace GomokuGUI
 {
     public partial class Gomoku
     {
-        private void Play()
+        private async Task Play()
         {
-            var firstMove = (new Random()).Next() % 2;
+            (var player1, var player2)
+                = new Random().Next() % 2 == 0 ? (Player1, Player2) : (Player2, Player1);
 
-            var moveCount = firstMove;
+            var moveCount = 0;
             var actionsExecuted = new List<GomokuLib.Action>();
 
             Color? winner;
-            Color current = Color.Red;
 
             while (true)
             {
-                IPlayer currentPlayer = ((++moveCount % 2) == 1) ? Player1 : Player2;
-                Text = $"Gomoku -> {currentPlayer.Name}'s move";
+                IPlayer currentPlayer = ((++moveCount % 2) == 1) ? player1 : player2;
+                Text = $"Gomoku -> {currentPlayer.Name}'s move!";
 
-                var action = currentPlayer.MakeMove(Game, actionsExecuted);
+                var action = await currentPlayer.MakeMoveAsync(Game, actionsExecuted);
                 Game.ExecuteAction(action);
-                DrawStone((Color)(((int)current++ - 1) % 2 + 1), action.X, action.Y);
+                DrawStone((Color)(-1 * (moveCount % 2) + 2), action.X, action.Y);
 
                 winner = Game.GetWinner();
                 if (winner is not null || Game.IsDraw())
@@ -36,12 +36,12 @@ namespace GomokuGUI
 
             if (winner is null)
             {
-                MessageBox.Show("Draw!");
+                (new GameResult("Draw!")).ShowDialog();
             }
             else
             {
-                var winnerName = (((int)winner.Value + firstMove) % 2 == 0) ? Player1.Name : Player2.Name;
-                MessageBox.Show($"{winnerName} won!");
+                var winnerName = winner.Value == Color.Red ? player1.Name : player2.Name;
+                (new GameResult($"{winnerName} won!")).ShowDialog();
             }
 
             Text = "Gomoku";

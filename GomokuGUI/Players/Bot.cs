@@ -3,6 +3,7 @@ using GomokuLib;
 using Heuristics;
 using MCTS;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GomokuGUI.Players
 {
@@ -38,9 +39,9 @@ namespace GomokuGUI.Players
             };
         }
 
-        public Action MakeMove(IMCTSAble<Action> game, IEnumerable<Action> actions)
+        public async Task<Action> MakeMoveAsync(IMCTSAble<Action> game, IEnumerable<Action> actions)
         {
-            return _engine.CalculateFromExecutedActions(game, actions);
+            return await Task.Run(() => _engine.CalculateFromExecutedActions(game, actions));
         }
     }
 }

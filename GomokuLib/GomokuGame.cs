@@ -6,8 +6,8 @@ namespace GomokuLib
 {
     public class GomokuGame : IMCTSAble<Action>
     {
-        private static readonly int BoardSize = 13;
-        private static readonly int WinPiecesCount = 5;
+        public static int BoardSize { get; set; } = 13;
+        public static int WinPiecesCount { get; set; } = 5;
 
         public Cell[,] Board { get; set; } = new Cell[BoardSize, BoardSize];
         public Color ActualColorMove { get; set; } = Color.Red;
@@ -187,15 +187,7 @@ namespace GomokuLib
         private void UpdateActualColorMoveAndPieceNumber()
         {
             ActualPieceNumber++;
-
-            if (ActualColorMove == Color.Red)
-            {
-                ActualColorMove = Color.Green;
-            }
-            else
-            {
-                ActualColorMove = Color.Red;
-            }
+            ActualColorMove = ActualColorMove == Color.Red ? Color.Green : Color.Red;
         }
     }
 }

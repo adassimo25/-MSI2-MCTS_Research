@@ -1,12 +1,14 @@
 ﻿using GomokuLib;
 using MCTS;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GomokuGUI.Players
 {
     public interface IPlayer
     {
         string Name { get; }
-        Action MakeMove(IMCTSAble<Action> game, IEnumerable<Action> actions);
+
+        Task<Action> MakeMoveAsync(IMCTSAble<Action> game, IEnumerable<Action> actions);
     }
 }

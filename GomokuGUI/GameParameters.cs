@@ -1,30 +1,27 @@
-﻿using System;
+﻿using GomokuLib;
+using System;
 using System.Windows.Forms;
 
 namespace GomokuGUI
 {
     public partial class GameParameters : Form
     {
-        private Gomoku Gomoku { get; set; }
-
-        public GameParameters(Gomoku gomoku)
+        public GameParameters()
         {
             InitializeComponent();
 
-            Gomoku = gomoku;
-
-            numericUpDownBoardSize.Value = gomoku.BoardSize;
-            numericUpDownWinning.Value = gomoku.Winning;
+            numericUpDownBoardSize.Value = GomokuGame.BoardSize;
+            numericUpDownWinning.Value = GomokuGame.WinPiecesCount;
         }
 
         private void NumericUpDownBoardSize_ValueChanged(object sender, EventArgs e)
         {
-            Gomoku.BoardSize = (int)(sender as NumericUpDown).Value;
+            GomokuGame.BoardSize = (int)(sender as NumericUpDown).Value;
         }
 
         private void NumericUpDownWinning_ValueChanged(object sender, EventArgs e)
         {
-            Gomoku.Winning = (int)(sender as NumericUpDown).Value;
+            GomokuGame.WinPiecesCount = (int)(sender as NumericUpDown).Value;
         }
     }
 }

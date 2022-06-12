@@ -5,11 +5,11 @@ namespace GomokuGUI
 {
     public partial class Gomoku
     {
-        private static Human CreateHuman() => new();
+        private Human CreateHuman() => new(pictureBox);
 
-        private Bot CreateBot1() => new(groupBoxBot1.Text, GetBot1CheckedAlgorithm(), trackBarBot1.Value);
+        private Bot CreateBot1() => new("Bot Adam", GetBot1CheckedAlgorithm(), trackBarBot1.Value);
 
-        private Bot CreateBot2() => new(groupBoxBot2.Text, GetBot2CheckedAlgorithm(), trackBarBot2.Value);
+        private Bot CreateBot2() => new("Bot Peter", GetBot2CheckedAlgorithm(), trackBarBot2.Value);
 
         private BotAlgorithmType GetBot1CheckedAlgorithm()
         {

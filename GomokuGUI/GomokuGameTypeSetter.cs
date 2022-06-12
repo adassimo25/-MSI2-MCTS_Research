@@ -4,7 +4,6 @@
     {
         private void SetBotBotGameType()
         {
-            groupBoxBot1.Text = "Bot 1";
             groupBoxBot1.Enabled = true;
             groupBoxBot2.Enabled = true;
 
@@ -14,7 +13,6 @@
 
         private void SetBotPlayerGameType()
         {
-            groupBoxBot1.Text = "Bot";
             groupBoxBot1.Enabled = true;
             groupBoxBot2.Enabled = false;
 
@@ -24,7 +22,6 @@
 
         private void SetPlayerPlayerGameType()
         {
-            groupBoxBot1.Text = "Bot 1";
             groupBoxBot1.Enabled = false;
             groupBoxBot2.Enabled = false;
 

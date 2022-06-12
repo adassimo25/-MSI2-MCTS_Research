@@ -296,7 +296,7 @@ namespace GomokuGUI
             this.groupBoxBot2.Size = new System.Drawing.Size(209, 225);
             this.groupBoxBot2.TabIndex = 1;
             this.groupBoxBot2.TabStop = false;
-            this.groupBoxBot2.Text = "Bot 2";
+            this.groupBoxBot2.Text = "Bot Peter";
             // 
             // tableLayoutPanelBot2
             // 
@@ -335,7 +335,6 @@ namespace GomokuGUI
             this.radioButtonBot2GreedyHeuristics.Text = "Greedy heuristics";
             this.radioButtonBot2GreedyHeuristics.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.radioButtonBot2GreedyHeuristics.UseVisualStyleBackColor = true;
-            this.radioButtonBot2GreedyHeuristics.CheckedChanged += new System.EventHandler(this.RadioButtonBot2GreedyHeuristics_CheckedChanged);
             // 
             // radioButtonBot2MCTSUCB1withHeuristics
             // 
@@ -348,7 +347,6 @@ namespace GomokuGUI
             this.radioButtonBot2MCTSUCB1withHeuristics.Text = "MCTS UCB1 with heuristics";
             this.radioButtonBot2MCTSUCB1withHeuristics.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.radioButtonBot2MCTSUCB1withHeuristics.UseVisualStyleBackColor = true;
-            this.radioButtonBot2MCTSUCB1withHeuristics.CheckedChanged += new System.EventHandler(this.RadioButtonBot2MCTSUCB1withHeuristics_CheckedChanged);
             // 
             // tableLayoutPanelBot2Iterations
             // 
@@ -385,20 +383,20 @@ namespace GomokuGUI
             this.labelBot2IterationsNumber.Name = "labelBot2IterationsNumber";
             this.labelBot2IterationsNumber.Size = new System.Drawing.Size(63, 22);
             this.labelBot2IterationsNumber.TabIndex = 1;
-            this.labelBot2IterationsNumber.Text = "250";
+            this.labelBot2IterationsNumber.Text = "750";
             this.labelBot2IterationsNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // trackBarBot2
             // 
             this.trackBarBot2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trackBarBot2.Location = new System.Drawing.Point(3, 31);
-            this.trackBarBot2.Maximum = 1000;
-            this.trackBarBot2.Minimum = 100;
+            this.trackBarBot2.Maximum = 2500;
+            this.trackBarBot2.Minimum = 250;
             this.trackBarBot2.Name = "trackBarBot2";
             this.trackBarBot2.Size = new System.Drawing.Size(197, 22);
             this.trackBarBot2.TabIndex = 1;
             this.trackBarBot2.TickFrequency = 50;
-            this.trackBarBot2.Value = 250;
+            this.trackBarBot2.Value = 750;
             this.trackBarBot2.ValueChanged += new System.EventHandler(this.TrackBarBot2_ValueChanged);
             // 
             // labelBot2SelectAlgorithm
@@ -424,7 +422,6 @@ namespace GomokuGUI
             this.radioButtonBot2MCTSClassic.TabStop = true;
             this.radioButtonBot2MCTSClassic.Text = "MCTS classic";
             this.radioButtonBot2MCTSClassic.UseVisualStyleBackColor = true;
-            this.radioButtonBot2MCTSClassic.CheckedChanged += new System.EventHandler(this.RadioButtonBot2MCTSClassic_CheckedChanged);
             // 
             // radioButtonBot2MCTSUCB1Tuned
             // 
@@ -437,7 +434,6 @@ namespace GomokuGUI
             this.radioButtonBot2MCTSUCB1Tuned.Text = "MCTS UCB1-Tuned";
             this.radioButtonBot2MCTSUCB1Tuned.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.radioButtonBot2MCTSUCB1Tuned.UseVisualStyleBackColor = true;
-            this.radioButtonBot2MCTSUCB1Tuned.CheckedChanged += new System.EventHandler(this.RadioButtonBot2MCTSUCB1Tuned_CheckedChanged);
             // 
             // groupBoxBot1
             // 
@@ -449,7 +445,7 @@ namespace GomokuGUI
             this.groupBoxBot1.Size = new System.Drawing.Size(209, 225);
             this.groupBoxBot1.TabIndex = 0;
             this.groupBoxBot1.TabStop = false;
-            this.groupBoxBot1.Text = "Bot 1";
+            this.groupBoxBot1.Text = "Bot Adam";
             // 
             // tableLayoutPanelBot1
             // 
@@ -488,7 +484,6 @@ namespace GomokuGUI
             this.radioButtonBot1GreedyHeuristics.Text = "Greedy heuristics";
             this.radioButtonBot1GreedyHeuristics.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.radioButtonBot1GreedyHeuristics.UseVisualStyleBackColor = true;
-            this.radioButtonBot1GreedyHeuristics.CheckedChanged += new System.EventHandler(this.RadioButtonBot1GreedyHeuristics_CheckedChanged);
             // 
             // radioButtonBot1MCTSUCB1withHeuristics
             // 
@@ -501,7 +496,6 @@ namespace GomokuGUI
             this.radioButtonBot1MCTSUCB1withHeuristics.Text = "MCTS UCB1 with heuristics";
             this.radioButtonBot1MCTSUCB1withHeuristics.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.radioButtonBot1MCTSUCB1withHeuristics.UseVisualStyleBackColor = true;
-            this.radioButtonBot1MCTSUCB1withHeuristics.CheckedChanged += new System.EventHandler(this.RadioButtonBot1MCTSUCB1withHeuristics_CheckedChanged);
             // 
             // tableLayoutPanelBot1Iterations
             // 
@@ -538,20 +532,20 @@ namespace GomokuGUI
             this.labelBot1IterationsNumber.Name = "labelBot1IterationsNumber";
             this.labelBot1IterationsNumber.Size = new System.Drawing.Size(63, 22);
             this.labelBot1IterationsNumber.TabIndex = 1;
-            this.labelBot1IterationsNumber.Text = "250";
+            this.labelBot1IterationsNumber.Text = "750";
             this.labelBot1IterationsNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // trackBarBot1
             // 
             this.trackBarBot1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trackBarBot1.Location = new System.Drawing.Point(3, 31);
-            this.trackBarBot1.Maximum = 1000;
-            this.trackBarBot1.Minimum = 100;
+            this.trackBarBot1.Maximum = 2500;
+            this.trackBarBot1.Minimum = 250;
             this.trackBarBot1.Name = "trackBarBot1";
             this.trackBarBot1.Size = new System.Drawing.Size(197, 22);
             this.trackBarBot1.TabIndex = 1;
             this.trackBarBot1.TickFrequency = 50;
-            this.trackBarBot1.Value = 250;
+            this.trackBarBot1.Value = 750;
             this.trackBarBot1.ValueChanged += new System.EventHandler(this.TrackBarBot1_ValueChanged);
             // 
             // labelBot1SelectAlgorithm
@@ -577,7 +571,6 @@ namespace GomokuGUI
             this.radioButtonBot1MCTSClassic.TabStop = true;
             this.radioButtonBot1MCTSClassic.Text = "MCTS classic";
             this.radioButtonBot1MCTSClassic.UseVisualStyleBackColor = true;
-            this.radioButtonBot1MCTSClassic.CheckedChanged += new System.EventHandler(this.RadioButtonBot1MCTSClassic_CheckedChanged);
             // 
             // radioButtonBot1MCTSUCB1Tuned
             // 
@@ -590,7 +583,6 @@ namespace GomokuGUI
             this.radioButtonBot1MCTSUCB1Tuned.Text = "MCTS UCB1-Tuned";
             this.radioButtonBot1MCTSUCB1Tuned.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.radioButtonBot1MCTSUCB1Tuned.UseVisualStyleBackColor = true;
-            this.radioButtonBot1MCTSUCB1Tuned.CheckedChanged += new System.EventHandler(this.RadioButtonBot1MCTSUCB1Tuned_CheckedChanged);
             // 
             // Gomoku
             // 
