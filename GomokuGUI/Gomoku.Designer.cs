@@ -383,20 +383,20 @@ namespace GomokuGUI
             this.labelBot2IterationsNumber.Name = "labelBot2IterationsNumber";
             this.labelBot2IterationsNumber.Size = new System.Drawing.Size(63, 22);
             this.labelBot2IterationsNumber.TabIndex = 1;
-            this.labelBot2IterationsNumber.Text = "750";
+            this.labelBot2IterationsNumber.Text = "1500";
             this.labelBot2IterationsNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // trackBarBot2
             // 
             this.trackBarBot2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trackBarBot2.Location = new System.Drawing.Point(3, 31);
-            this.trackBarBot2.Maximum = 2500;
-            this.trackBarBot2.Minimum = 250;
+            this.trackBarBot2.Maximum = 4500;
+            this.trackBarBot2.Minimum = 500;
             this.trackBarBot2.Name = "trackBarBot2";
             this.trackBarBot2.Size = new System.Drawing.Size(197, 22);
             this.trackBarBot2.TabIndex = 1;
-            this.trackBarBot2.TickFrequency = 50;
-            this.trackBarBot2.Value = 750;
+            this.trackBarBot2.TickFrequency = 100;
+            this.trackBarBot2.Value = 1500;
             this.trackBarBot2.ValueChanged += new System.EventHandler(this.TrackBarBot2_ValueChanged);
             // 
             // labelBot2SelectAlgorithm
@@ -532,20 +532,20 @@ namespace GomokuGUI
             this.labelBot1IterationsNumber.Name = "labelBot1IterationsNumber";
             this.labelBot1IterationsNumber.Size = new System.Drawing.Size(63, 22);
             this.labelBot1IterationsNumber.TabIndex = 1;
-            this.labelBot1IterationsNumber.Text = "750";
+            this.labelBot1IterationsNumber.Text = "1500";
             this.labelBot1IterationsNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // trackBarBot1
             // 
             this.trackBarBot1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trackBarBot1.Location = new System.Drawing.Point(3, 31);
-            this.trackBarBot1.Maximum = 2500;
-            this.trackBarBot1.Minimum = 250;
+            this.trackBarBot1.Maximum = 4500;
+            this.trackBarBot1.Minimum = 500;
             this.trackBarBot1.Name = "trackBarBot1";
             this.trackBarBot1.Size = new System.Drawing.Size(197, 22);
             this.trackBarBot1.TabIndex = 1;
-            this.trackBarBot1.TickFrequency = 50;
-            this.trackBarBot1.Value = 750;
+            this.trackBarBot1.TickFrequency = 100;
+            this.trackBarBot1.Value = 1500;
             this.trackBarBot1.ValueChanged += new System.EventHandler(this.TrackBarBot1_ValueChanged);
             // 
             // labelBot1SelectAlgorithm
